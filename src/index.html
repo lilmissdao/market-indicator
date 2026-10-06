@@ -147,6 +147,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
 .latest{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:14px 16px 4px;margin:24px 0 8px}
 .latest h3{font-size:15px;font-weight:600;margin:0 0 6px}
 .latest p{font-size:17px}
+.chart-title .chart-sub{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:2px}
 .cf{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:13px;color:var(--ink-2);background:var(--bg);border-radius:8px;padding:8px 12px;margin:0 4px 10px;line-height:1.3;max-width:none}
 .cf .eqr{gap:6px}
 .eqr{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
@@ -176,7 +177,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
 <div class="gcol" id="gcol" aria-label="Graphs">
 <p class="swipe">Swipe left for explanations · tap a graph to read about it</p>
 <div class="gcard" data-target="g1" tabindex="0" role="button" aria-label="Show the explanation for Graph 1"><div class="chartbox inner">
-    <p class="chart-title" id="t1">Graph 1: Shiller CAPE vs regular P/E, 1900–2024</p>
+    <p class="chart-title">Graph 1: Shiller CAPE vs regular P/E<span class="chart-sub" id="t1">What investors pay for each $1 of company profit, 1900–2026</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">P/E</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">12-month earnings</span></span></div><div class="eqr"><span class="lhs">CAPE</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">10-year avg. real earnings</span></span></div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="1" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="1" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="1" data-m="m12" aria-pressed="false">Last 12 months</button><button type="button" class="rg adjb" data-g="1" data-m="adj" aria-pressed="false">Tech-adjusted</button></div>
     <div class="toggles" role="group" aria-label="Choose which lines to show">
@@ -184,7 +185,8 @@ section.ind.flash{animation:flash 1.4s ease-out}
       <button type="button" class="tg on" data-ds="1" aria-pressed="true"><i class="sw dash" style="border-color:var(--ink-2)"></i>Regular P/E</button>
     </div>
     <div class="legend">
-      <span class="allonly"><i class="sw dash" style="border-color:var(--muted)"></i>Normal CAPE ≈ 17</span>
+      <span class="allonly"><i class="sw dash" style="border-color:var(--muted)"></i>Normal CAPE: ≈15, rising to ≈27</span>
+      <span class="allonly"><i class="sw dash" style="border-color:var(--ink-2);border-top-style:dotted"></i>Normal P/E: ≈14, rising to ≈21</span>
       <span><i class="sw round" style="background:var(--red)"></i>Famous bubble crash</span>
       <span><i class="sw round" style="background:var(--amber)"></i>Other drop</span>
     </div>
@@ -192,7 +194,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f1">Drop sizes are approximate peak-to-bottom declines. Ratios are rounded annual readings. Regular P/E uses reported earnings.</p>
   </div></div>
 <div class="gcard" data-target="g2" tabindex="0" role="button" aria-label="Show the explanation for Graph 2"><div class="chartbox inner">
-    <p class="chart-title" id="t2">Graph 2: Excess CAPE Yield, 1900–2024</p>
+    <p class="chart-title">Graph 2: Excess CAPE Yield (ECY)<span class="chart-sub" id="t2">Extra yearly return stocks offer over safe bonds, 1900–2026</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">ECY</span><span class="op">=</span><span class="fx"><span class="nu">1</span><span class="de">CAPE</span></span><span class="op">−</span>Real bond yield</div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="2" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="2" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="2" data-m="m12" aria-pressed="false">Last 12 months</button><button type="button" class="rg adjb" data-g="2" data-m="adj" aria-pressed="false">Tech-adjusted</button></div>
     <div class="legend">
@@ -205,7 +207,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f2">Approximate values. Real bond yield = 10-year Treasury rate minus average inflation over the prior 10 years, following Shiller's method.</p>
   </div></div>
 <div class="gcard" data-target="g3" tabindex="0" role="button" aria-label="Show the explanation for Graph 3"><div class="chartbox inner">
-    <p class="chart-title" id="t3">Graph 3: Stock market value as % of GDP, 1970–2024</p>
+    <p class="chart-title">Graph 3: Buffett indicator<span class="chart-sub" id="t3">Total US stock market value as a % of GDP, 1970–2026</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">Buffett indicator</span><span class="op">=</span><span class="fx"><span class="nu">Stock market value</span><span class="de">GDP</span></span></div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="3" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="3" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="3" data-m="m12" aria-pressed="false">Last 12 months</button><button type="button" class="rg adjb" data-g="3" data-m="adj" aria-pressed="false">Tech-adjusted</button></div>
     <div class="legend">
@@ -217,7 +219,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f3">Approximate year-end values.</p>
   </div></div>
 <div class="gcard" data-target="g4" tabindex="0" role="button" aria-label="Show the explanation for Graph 4"><div class="chartbox inner">
-    <p class="chart-title" id="t4">Graph 4: 10-year minus 2-year Treasury rate, 1977–2025</p>
+    <p class="chart-title">Graph 4: Yield curve<span class="chart-sub" id="t4">10-year minus 2-year Treasury rate (below zero = warning), 1977–2026</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">Spread</span><span class="op">=</span>10-yr yield − 2-yr yield</div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="4" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="4" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="4" data-m="m12" aria-pressed="false">Last 12 months</button></div>
     <div class="legend">
@@ -229,7 +231,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f4">Approximate annual averages, in percentage points.</p>
   </div></div>
 <div class="gcard" data-target="g5" tabindex="0" role="button" aria-label="Show the explanation for Graph 5"><div class="chartbox inner">
-    <p class="chart-title" id="t5">Graph 5: Interest rate before vs after each hiking cycle</p>
+    <p class="chart-title">Graph 5: Central bank rate hikes<span class="chart-sub" id="t5">Interest rate before vs after each hiking cycle</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">Hike size</span><span class="op">=</span>Peak rate − Starting rate</div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="5" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="5" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="5" data-m="m12" aria-pressed="false">Last 12 months</button></div>
     <div class="legend">
@@ -240,7 +242,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f5">1928–29 uses the New York Fed discount rate. Others use the main policy rate.</p>
   </div></div>
 <div class="gcard" data-target="g6" tabindex="0" role="button" aria-label="Show the explanation for Graph 6"><div class="chartbox inner">
-    <p class="chart-title" id="t6">Graph 6: How narrow leadership plays out (illustration)</p>
+    <p class="chart-title">Graph 6: Narrow leadership<span class="chart-sub" id="t6">The index vs the typical stock when a few giants lead (illustration)</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">Breadth gap</span><span class="op">=</span>Equal-weight return − Index return</div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="6" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="6" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="6" data-m="m12" aria-pressed="false">Last 12 months</button><button type="button" class="rg adjb" data-g="6" data-m="adj" aria-pressed="false">Tech-adjusted</button></div>
     <div class="legend">
@@ -251,7 +253,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     <p class="fine" id="f6"></p>
   </div></div>
 <div class="gcard" data-target="g7" tabindex="0" role="button" aria-label="Show the explanation for Graph 7"><div class="chartbox inner">
-    <p class="chart-title" id="t7">Graph 7: Margin call chain reaction (simulator)</p>
+    <p class="chart-title">Graph 7: Margin debt and leverage<span class="chart-sub" id="t7">How forced selling turns a small dip into a crash (simulator)</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">Leverage</span><span class="op">=</span><span class="fx"><span class="nu">Position value</span><span class="de">Your own money</span></span></div></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="7" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="7" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="7" data-m="m12" aria-pressed="false">Last 12 months</button></div>
     <div class="sim-row simonly">
@@ -310,7 +312,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
   <p class="kicker">Act 1 · Valuation</p>
   <h2>Graph 1: Shiller CAPE vs regular P/E</h2>
   <p class="q">Are stocks expensive compared to the profits companies actually make?</p>
-  <div class="formula"><p class="fl">The formula</p><div class="eqr"><span class="lhs">P/E</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">Last 12 months of earnings</span></span></div><div class="eqr"><span class="lhs">CAPE</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">Average of the last 10 years of earnings, adjusted for inflation</span></span></div><p class="ex">Example (Oct 2, 2026): CAPE = 41.4, so investors pay $41.40 for every $1 of average inflation-adjusted profit. Regular P/E = 26.3.</p><div class="glance"><p><span class="gk">▲ Higher</span><span>More expensive: you pay more for each $1 of profit. CAPE above 30 came before the biggest crashes.</span></p><p><span class="gk">▼ Lower</span><span>Cheaper. Normal CAPE is about 17, and readings near 7–10 (1932, 1982) were great times to buy.</span></p></div></div>
+  <div class="formula"><p class="fl">The formula</p><div class="eqr"><span class="lhs">P/E</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">Last 12 months of earnings</span></span></div><div class="eqr"><span class="lhs">CAPE</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">Average of the last 10 years of earnings, adjusted for inflation</span></span></div><p class="ex">Example (Oct 2, 2026): CAPE = 41.4, so investors pay $41.40 for every $1 of average inflation-adjusted profit. Regular P/E = 26.3.</p><div class="glance"><p><span class="gk">▲ Higher</span><span>More expensive: you pay more for each $1 of profit. CAPE above 30 came before the biggest crashes.</span></p><p><span class="gk">▼ Lower</span><span>Cheaper. Normal CAPE was about 15 before the 1990s and about 27 since. Readings near 7–10 (1932, 1982) were great times to buy.</span></p></div></div>
 
   <h3 class="sub">What they measure</h3>
   <p>Both lines show how many dollars investors pay for $1 of S&amp;P 500 profit. If you buy a store that earns $100k a year for $1.7M, you're paying 17× its profit.</p>
@@ -318,7 +320,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
   <p><strong>Shiller CAPE</strong> (blue line) uses the 10-year average profit, adjusted for inflation. Nobel laureate Robert Shiller created it to smooth out boom and bust years.</p>
 
   <h3 class="sub">How to read the graph</h3>
-  <p>Higher means more expensive. The dotted line at 17 is roughly normal for CAPE. Each dot is a peak that was followed by a drop, and the size of the drop is written above it. Red dots are the three famous bubble crashes, and amber dots are the other drops. The buttons show one line at a time. Hover or tap a point for details.</p>
+  <p>Higher means more expensive. The dotted lines show "normal." They step up in the 1990s, as accounting changes and high-margin tech companies lifted typical valuations: CAPE goes from about 15 to about 27, and P/E from about 14 to about 21. Each dot is a peak that was followed by a drop, and the size of the drop is written above it. Red dots are the three famous bubble crashes, and amber dots are the other drops. The buttons show one line at a time. Hover or tap a point for details.</p>
 
   <p class="see sans">See Graph 1 on the left.</p>
 
@@ -328,7 +330,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
   <p><strong>A low CAPE means opportunity.</strong> The 1982 low kicked off an 18-year rally.</p>
   <p><strong>Regular P/E gives false alarms.</strong> When profits collapse, it spikes: about 70 in 2009 (one of the best times to buy in decades), about 46 in 2002, and about 36 in 2021. It also misses real danger. In 1929 it was only about 20, because boom-time profits were high, while CAPE showed 33.</p>
   <div class="callout"><p><strong>The takeaway:</strong> regular P/E is like valuing a store off one month of sales. CAPE values it off a 10-year record, so it's the better bubble gauge. A high CAPE tells you how much there is to lose, not when the fall will happen. Today's reading of about 41 is above the 1929 and 2021 peaks and second only to dot-com.</p></div>
-  <div class="techbox"><h3>Tech-era adjustment</h3><p><strong>Use the "Tech-adjusted" button</strong> to compare today's CAPE with three ideas of "normal." Even against the most generous one, the post-1990 average (27.4), today's reading is about 50% higher. Fast tech profit growth makes the 10-year average lag, which is partly why P/E (26) is so far below CAPE (41). But 26 is still well above P/E's long-run average of about 16.</p></div>
+  <div class="techbox"><h3>Tech-era adjustment</h3><p><strong>Use the "Tech-adjusted" button</strong> to compare today's CAPE with three ideas of "normal." Even against the most generous one, the post-1990 average (27.4), today's reading is about 50% higher. Fast tech profit growth makes the 10-year average lag, which is partly why P/E (26) is so far below CAPE (41). But 26 is still well above P/E's tech-era normal of about 21.</p></div>
   <div class="latest"><h3>Latest: the last 12 months</h3><p>CAPE rose from about 39 to 41.4 (October 2, 2026), with a dip to 37 in March. That's above the 1929 peak (32.6) and the 2021 peak (38.6). Only the dot-com peak (44.2) was higher. Regular P/E eased from about 28 to 26 because profits grew faster than prices. Recent profits are strong, but prices are high compared with the 10-year profit record.</p></div>
 </section>
 
@@ -515,13 +517,13 @@ const TIPS12=[1.76,1.83,1.90,1.91,1.82,1.91,1.94,2.04,2.18,2.35,2.40,2.43,2.92];
 const ECY12=CAPE12.map((c,i)=>Math.round((100/c-TIPS12[i])*100)/100);
 
 const TITLES={
-1:['Graph 1: Shiller CAPE vs regular P/E, 1900–2026','Graph 1: CAPE vs regular P/E, last 12 months'],
-2:['Graph 2: Excess CAPE Yield, 1900–2026','Graph 2: Excess CAPE Yield, last 12 months'],
-3:['Graph 3: Stock market value as % of GDP, 1970–2026','Graph 3: Buffett indicator, readings in the last 12 months'],
-4:['Graph 4: 10-year minus 2-year Treasury rate, 1977–2026','Graph 4: Yield curve, last 12 months'],
-5:['Graph 5: Interest rate before vs after each hiking cycle','Graph 5: Fed target rate, last 12 months'],
-6:['Graph 6: How narrow leadership plays out (illustration)','Graph 6: Typical stock vs the index, real data'],
-7:['Graph 7: Margin call chain reaction (simulator)','Graph 7: US margin debt, last 12 months']};
+1:['What investors pay for each $1 of company profit, 1900–2026','What investors pay for each $1 of profit, last 12 months'],
+2:['Extra yearly return stocks offer over safe bonds, 1900–2026','Extra return stocks offer over safe bonds, last 12 months'],
+3:['Total US stock market value as a % of GDP, 1970–2026','Stock market value as % of GDP, readings in the last 12 months'],
+4:['10-year minus 2-year Treasury rate (below zero = warning), 1977–2026','10-year minus 2-year Treasury rate, last 12 months'],
+5:['Interest rate before vs after each hiking cycle','Fed target rate, last 12 months'],
+6:['The index vs the typical stock when a few giants lead (illustration)','The typical stock vs the index, real data'],
+7:['How forced selling turns a small dip into a crash (simulator)','US margin debt, last 12 months']};
 const NOTES={
 1:['Drop sizes are approximate peak-to-bottom declines. Ratios are rounded readings from Shiller data. Regular P/E uses reported earnings.','Monthly readings, Oct 2025 to Oct 2, 2026, from Robert Shiller\u2019s data via multpl.com. Regular P/E for Jul\u2013Oct 2026 are estimates.'],
 2:['Approximate values. Real bond yield = 10-year Treasury rate minus average inflation over the prior 10 years, following Shiller\u2019s method. 2026 point is Shiller\u2019s September 2026 reading.','Calculated as 100 \u00f7 CAPE minus the 10-year TIPS (inflation-protected) Treasury yield, monthly, from multpl.com data. Shiller\u2019s own method uses past inflation instead and read about 1.0% in September 2026.'],
@@ -540,16 +542,19 @@ const peNote={1929:'Looked calm: profits were at a boom high',2002:'Spike after 
 const pk={1906:['-45%','1907 bank panic',0],1929:['-86%','the Great Crash',1],1937:['-50%','the 1937\u201338 recession',0],1966:['-22%','then flat for 16 years',0],1999:['-49%','the dot-com bust',1],2007:['-57%','the 2008 financial crisis',1],2018:['-20%','late 2018, then -34% in the 2020 COVID crash',0],2021:['-25%','the 2022 bear market',0]};
 const lab={id:'lab1',afterDatasetsDraw(c){const x=c.ctx;x.save();x.textAlign='center';
 if(c.isDatasetVisible(0)){c.getDatasetMeta(0).data.forEach((p,i)=>{const yr=cape[i][0],k=pk[yr];
-if(yr===2026){x.font='600 12px '+FONT;x.fillStyle=t.ink;x.fillText('Now 41.4',p.x-6,p.y-12);return;}
+const narrow=c.chartArea.right-c.chartArea.left<420;
+if(yr===2026){x.font='600 12px '+FONT;x.fillStyle=t.ink;x.textAlign='right';x.fillText(narrow?'41.4':'Now 41.4',p.x+6,narrow?p.y-12:p.y-30);x.textAlign='center';return;}if(narrow&&(yr===2018||yr===2021))return;
+if(yr===2018&&k){x.textAlign='right';x.font='600 12px '+FONT;x.fillStyle=t.amber;x.fillText(k[0],p.x+6,p.y-25);x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText('2018',p.x+6,p.y-12);x.textAlign='center';return;}
 if(!k)return;x.font='600 12px '+FONT;x.fillStyle=k[2]?t.red:t.amber;x.fillText(k[0],p.x,p.y-25);x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText(String(yr),p.x,p.y-12);});
 const p82=c.getDatasetMeta(0).data[17];x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText('Cheap: 1982',p82.x,p82.y+20);}
-if(c.isDatasetVisible(1)){const m=c.getDatasetMeta(1).data;const i09=pe.findIndex(d=>d[0]===2009),i02=pe.findIndex(d=>d[0]===2002);x.font='11px '+FONT;x.fillStyle=t.ink;x.textAlign='right';x.fillText('Regular P/E \u2248 71 (2009)',m[i09].x-8,m[i09].y+4);x.fillText('\u2248 46 (2002)',m[i02].x-8,m[i02].y+4);}
-const a=c.scales.y.getPixelForValue(17);x.textAlign='left';x.fillStyle=t.muted;x.font='11px '+FONT;x.fillText('Normal CAPE \u2248 17',c.chartArea.left+6,a+15);x.restore();}};
+if(c.isDatasetVisible(1)){const m=c.getDatasetMeta(1).data;const i09=pe.findIndex(d=>d[0]===2009),i02=pe.findIndex(d=>d[0]===2002);x.font='11px '+FONT;x.fillStyle=t.ink;x.textAlign='right';x.fillText('Regular P/E \u2248 71 (2009)',m[i09].x-8,m[i09].y+4);if(c.chartArea.right-c.chartArea.left>=420){x.textAlign='left';x.fillText('46',m[i02].x+8,m[i02].y+4);}}
+x.font='600 11px '+FONT;x.textAlign='left';[[2,27,'27',t.muted],[3,21,'21',t.ink2]].forEach(([d,v,s,col])=>{if(!c.isDatasetVisible(d))return;x.fillStyle=col;x.fillText(s,c.chartArea.right+4,c.scales.y.getPixelForValue(v)+4);});x.restore();}};
 put(1,{type:'line',plugins:[lab],data:{datasets:[
 {data:cape.map(([x,y])=>({x,y})),borderColor:t.blue,borderWidth:2.5,tension:.25,fill:'origin',backgroundColor:hexA(t.blue,.07),pointRadius:cape.map(([x])=>pk[x]?6:(x===2026?6:0)),pointHoverRadius:cape.map(([x])=>pk[x]||x===2026?8:4),pointBackgroundColor:cape.map(([x])=>pk[x]?(pk[x][2]?t.red:t.amber):t.ink),pointBorderColor:t.surface,pointBorderWidth:2,order:1},
 {data:pe.map(([x,y])=>({x,y})),borderColor:t.ink2,borderDash:[6,4],borderWidth:2,tension:.2,pointRadius:pe.map(([x])=>(x===2009||x===2002)?4:0),pointBackgroundColor:t.ink2,pointHoverRadius:4,fill:false,order:2},
-{data:[{x:1900,y:17},{x:2027,y:17}],borderColor:hexA(t.muted,.7),borderDash:[3,4],borderWidth:1.25,pointRadius:0,fill:false,order:3}]},
-options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:34,right:10}},interaction:{mode:'nearest',intersect:false,axis:'x'},
+{data:[{x:1900,y:15},{x:1990,y:15},{x:2002,y:27},{x:2027,y:27}],borderColor:hexA(t.muted,.8),borderDash:[3,4],borderWidth:1.25,pointRadius:0,pointHoverRadius:0,fill:false,order:3},
+{data:[{x:1900,y:14},{x:1990,y:14},{x:2002,y:21},{x:2027,y:21}],borderColor:hexA(t.ink2,.55),borderDash:[1,3],borderWidth:1.5,pointRadius:0,pointHoverRadius:0,fill:false,order:4}]},
+options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:34,right:24}},interaction:{mode:'nearest',intersect:false,axis:'x'},
 plugins:{legend:{display:false},tooltip:{filter:i=>i.datasetIndex<2,callbacks:{title:i=>String(i[0].raw.x),label:c=>{const y=c.raw.x;if(c.datasetIndex===1){const n=peNote[y];return n?['Regular P/E: '+c.raw.y,n]:'Regular P/E: '+c.raw.y;}const k=pk[y];return k?['CAPE: '+c.raw.y,'Then: '+k[0]+' ('+k[1]+')']:(y===2026?['CAPE: 41.4 (Oct 2, 2026)']:'CAPE: '+c.raw.y);}}}},
 scales:{x:{type:'linear',min:1900,max:2027,grid:{display:false},ticks:{stepSize:10,callback:v=>v%10===0?v:''}},y:{min:0,max:75,grid:{color:gridC},title:{display:true,text:'$ paid per $1 of profit',color:t.muted}}}}});
 },
@@ -695,10 +700,10 @@ B[3].adj=function(){const L=[['Dot-com peak','(2000)'],['Now','(Q1 2026)']],V=[3
 barsH(3,L,V,{min:0,max:35,colors:[hexA(t.red,.75),hexA(t.blue,.85)],fmt:v=>v+'\u00d7',tip:v=>'Market value = '+v+'\u00d7 after-tax corporate profits',tick:v=>v+'\u00d7',xt:'Stock market value \u00f7 after-tax corporate profits'});};
 B[6].adj=function(){const L=[['S&P 500','(regular)'],['S&P 500 without','the Magnificent 7'],['Typical stock','(equal-weight)']],V=[22,19.4,16.5];
 barsH(6,L,V,{min:0,max:26,ref:[18.4,'10-yr avg forward P/E 18.4'],colors:[hexA(t.red,.8),hexA(t.amber,.85),hexA(t.blue,.85)],fmt:v=>v+'\u00d7',tip:v=>'About '+v+'\u00d7 forecast 2026 earnings',tick:v=>v+'\u00d7',xt:'Price \u00f7 forecast 2026 earnings (forward P/E)'});};
-TITLES[1].push('Graph 1: CAPE against tech-era \u201cnormal\u201d levels');
-TITLES[2].push('Graph 2: ECY with more generous earnings measures');
-TITLES[3].push('Graph 3: Buffett indicator adjusted for profits');
-TITLES[6].push('Graph 6: Where the expensiveness sits');
+TITLES[1].push('Today\u2019s CAPE against tech-era \u201cnormal\u201d levels');
+TITLES[2].push('The extra return, using more generous earnings measures');
+TITLES[3].push('Stock market value compared with corporate profits instead of GDP');
+TITLES[6].push('Where the expensiveness sits');
 NOTES[1].push('Long-run average 17.3 per Shiller data. Average since 1990 is my calculation from Shiller\u2019s January CAPE readings, 1990\u20132026; it includes the dot-com bubble.');
 NOTES[2].push('Earnings yield (100 \u00f7 ratio) minus the 10-year TIPS yield of 2.92% on Oct 2, 2026, except the Shiller-method bar. Forward P/E \u2248 22 as of mid-2026. Median per LSEG research.');
 NOTES[3].push('Market value of US public companies \u00f7 after-tax corporate profits (Fed Z.1, BEA), as compiled by thetrading.tools. Assumes today\u2019s high profits hold up.');
@@ -718,7 +723,7 @@ const iOf=x=>D10.findIndex(d=>Math.abs(d[0]-x)<0.01);
 B[1].y10=function(){
 lineY10(1,[{data:D10.map(d=>({x:d[0],y:d[1]})),borderColor:t.blue,borderWidth:2.5,tension:.25,pointRadius:0,pointHoverRadius:5,fill:'origin',backgroundColor:hexA(t.blue,.07)},
 {data:D10.map(d=>({x:d[0],y:d[2]})),borderColor:t.ink2,borderDash:[6,4],borderWidth:2,tension:.25,pointRadius:0,pointHoverRadius:5}],
-{ymin:15,ymax:47,yl:'$ paid per $1 of profit',extra:[hline(44.2,'Dot-com peak 44.2',{color:t.red}),hline(17,'Normal CAPE \u2248 17',{below:true})],
+{ymin:15,ymax:47,yl:'$ paid per $1 of profit',extra:[hline(44.2,'Dot-com peak 44.2',{color:t.red}),hline(27,'Tech-era normal CAPE \u2248 27',{below:true}),hline(21,'Normal P/E \u2248 21',{below:true,color:t.ink2})],
 notes:[[0,iOf(2020.167),'COVID low 24.8',t.ink2,22],[0,iOf(2021.833),'2021 peak 38.6',t.ink],[0,iOf(2026.75),'Now 41.4',t.ink,-12,'right'],[1,iOf(2020.917),'P/E 39 (COVID profit dip)',t.ink2,-10]],
 title:i=>dlab(i.raw.x),tip:c=>(c.datasetIndex?'Regular P/E: ':'CAPE: ')+c.raw.y});};
 B[2].y10=function(){const E=D10.map(d=>({x:d[0],y:Math.round((100/d[1]-d[3])*100)/100}));
@@ -744,7 +749,7 @@ scales:{x:{min:-35,max:0,grid:{color:gridC},ticks:{callback:v=>v+'%'},title:{dis
 B[7].y10=function(){const P=[[2018.33,0.669],[2021.75,0.936],[2022.75,0.607],[2023.67,0.681],[2024.58,0.797],[2025.08,0.918],[2025.17,0.880],[2025.58,1.060],[2025.67,1.126],[2025.75,1.184],[2025.83,1.214],[2025.92,1.226],[2026,1.279],[2026.08,1.253],[2026.17,1.221],[2026.25,1.304],[2026.33,1.416],[2026.42,1.502],[2026.5,1.417],[2026.58,1.45]];
 lineY10(7,[{data:P.map(([x,y])=>({x,y})),borderColor:t.blue,borderWidth:2.5,tension:.15,borderDash:[],pointRadius:P.map((p,i)=>i<8?4:2),pointBackgroundColor:P.map((p,i)=>i===0||i===1||i===17?t.red:t.blue),pointBorderColor:t.surface,pointBorderWidth:1.5,pointHoverRadius:6,fill:'origin',backgroundColor:hexA(t.blue,.07)}],
 {xmin:2017.5,ymin:0.4,ymax:1.65,yl:'Margin debt ($ trillions)',yt:v=>'$'+v.toFixed(1)+'T',notes:[[0,0,'2018 peak $669B',t.red,-12],[0,1,'2021 peak $936B',t.red,-12],[0,2,'2022 low',t.ink2,20],[0,17,'Record $1.50T',t.red,-12,'right']],title:i=>dlab(i.raw.x),tip:c=>'Margin debt: $'+(c.raw.y*1000).toFixed(0)+' billion'});};
-const T10={1:'Graph 1: CAPE vs regular P/E, last 10 years',2:'Graph 2: Excess CAPE Yield, last 10 years',3:'Graph 3: Buffett indicator, last 10 years',4:'Graph 4: Yield curve, last 10 years',5:'Graph 5: Fed target rate, last 10 years',6:'Graph 6: Typical stock vs the index, longer view',7:'Graph 7: US margin debt, last 10 years'};
+const T10={1:'What investors pay for each $1 of profit, last 10 years',2:'Extra return stocks offer over safe bonds, last 10 years',3:'Stock market value as % of GDP, last 10 years',4:'10-year minus 2-year Treasury rate, last 10 years',5:'Fed target rate, last 10 years',6:'The typical stock vs the index, longer view',7:'US margin debt, last 10 years'};
 const N10={1:'Quarterly readings Oct 2016 to Oct 2, 2026, plus the Dec 2018, Mar 2020, Dec 2020 and Nov 2021 turning points. Shiller data via multpl.com.',2:'100 \u00f7 CAPE minus the 10-year TIPS yield, same dates as Graph 1. Shiller\u2019s own method uses past inflation and reads higher (about 1.0% in Sep 2026).',3:'Approximate readings; sources differ by method. 2025\u201326 points are as reported in news coverage.',4:'Annual averages (approximate), with the Oct 2, 2026 reading. Shaded bar: the brief 2020 recession.',5:'Top of the federal funds target range after each Fed decision, Oct 2016 to Oct 2026.',6:'Equal-weight S&P 500 vs the regular index, total return, as of Sep 25, 2026. The Magnificent 7 grew from 12.3% of the S&P 500 in 2015 to 33.7% in April 2026.',7:'FINRA margin debit balances at confirmed points: the 2018 and 2021 peaks, the 2022 low, and readings from 2023 on. Monthly from Sep 2025.'};
 
 function render(n){const m=mode[n];const i=m==='all'?0:(m==='m12'?1:2);
@@ -753,11 +758,12 @@ const card=document.querySelector('.gcard[data-target="g'+n+'"]');if(card){card.
 document.querySelectorAll('.rg[data-g="'+n+'"]').forEach(b=>{const on=b.dataset.m===m;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});
 B[n][m]();
 if(n===1&&m!=='adj')document.querySelectorAll('.tg').forEach(b=>{const k=+b.dataset.ds;const on=charts.c1.isDatasetVisible(k);b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});}
+function hideTips(){Object.values(charts).forEach(c=>{if(!c.tooltip||!c.tooltip.getActiveElements().length)return;c.tooltip.setActiveElements([],{x:0,y:0});c.setActiveElements([]);c.update('none');});}
 function build(){base();for(let n=1;n<=7;n++)render(n);}
 
 document.querySelectorAll('.rg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const n=+b.dataset.g;if(mode[n]===b.dataset.m)return;mode[n]=b.dataset.m;render(n);}));
 document.getElementById('lev').addEventListener('input',()=>sim());
-document.querySelectorAll('.tg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=charts.c1;if(!c)return;const i=+b.dataset.ds;const on=!c.isDatasetVisible(i);const other=i?0:1;if(!on&&!c.isDatasetVisible(other))return;c.setDatasetVisibility(i,on);c.update();b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));}));
+document.querySelectorAll('.tg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=charts.c1;if(!c)return;const i=+b.dataset.ds;const on=!c.isDatasetVisible(i);const other=i?0:1;if(!on&&!c.isDatasetVisible(other))return;c.setDatasetVisibility(i,on);if(mode[1]==='all'&&c.data.datasets[i+2])c.setDatasetVisibility(i+2,on);c.update();b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));}));
 
 if(window.Chart){build();window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',build);new MutationObserver(build).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});}
 
@@ -768,12 +774,16 @@ const tabG=document.getElementById('tabG'),tabT=document.getElementById('tabT');
 function setTab(t){const onT=t==='t';tabG.classList.toggle('on',!onT);tabT.classList.toggle('on',onT);tabG.setAttribute('aria-selected',String(!onT));tabT.setAttribute('aria-selected',String(onT));}
 tabG.addEventListener('click',()=>cols.scrollTo({left:0,behavior:'smooth'}));
 tabT.addEventListener('click',()=>cols.scrollTo({left:tcol.offsetLeft,behavior:'smooth'}));
-cols.addEventListener('scroll',()=>{if(!isMobile())return;setTab(cols.scrollLeft>cols.clientWidth/2?'t':'g');},{passive:true});
+cols.addEventListener('scroll',()=>{hideTips();if(!isMobile())return;setTab(cols.scrollLeft>cols.clientWidth/2?'t':'g');},{passive:true});
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function go(card){const sec=document.getElementById(card.dataset.target);if(!sec)return;document.querySelectorAll('.gcard.active').forEach(c=>c.classList.remove('active'));card.classList.add('active');
+function go(card){hideTips();const sec=document.getElementById(card.dataset.target);if(!sec)return;document.querySelectorAll('.gcard.active').forEach(c=>c.classList.remove('active'));card.classList.add('active');
 if(isMobile()){cols.scrollTo({left:tcol.offsetLeft,behavior:reduce?'auto':'smooth'});}tcol.scrollTo({top:sec.offsetTop-8,behavior:reduce?'auto':'smooth'});
 sec.classList.remove('flash');void sec.offsetWidth;sec.classList.add('flash');}
 document.querySelectorAll('.gcard').forEach(card=>{card.addEventListener('click',e=>{if(e.target.closest('input,button,label,output,a'))return;go(card);});card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();go(card);}});});
+['scroll','resize'].forEach(ev=>window.addEventListener(ev,hideTips,{passive:true}));
+document.getElementById('gcol').addEventListener('scroll',hideTips,{passive:true});
+document.querySelectorAll('canvas').forEach(cv=>cv.addEventListener('pointerleave',hideTips));
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('canvas'))hideTips();});
 })();
 
 </script>
