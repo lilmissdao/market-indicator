@@ -69,10 +69,20 @@ h3.sub{font-size:16px;font-weight:600;margin:28px 0 8px}
 .tg:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .cv{position:relative;width:100%;height:320px}
 .cv.tall{height:380px}
-.cv.master{height:560px}
+.mwrap{display:flex;flex-direction:column;height:400px}
+.mprice{position:relative;flex:2.6 1 0;min-height:160px}
+#mpanels{display:contents}
+.mpan{position:relative;flex:1 1 0;min-height:70px;border-top:1px solid var(--line)}
+.mresize{height:16px;margin:2px 4px 6px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;touch-action:none;border-radius:6px}
+.mresize span{width:44px;height:4px;border-radius:2px;background:var(--line)}
+.mresize:hover span,.mresize:focus-visible span{background:var(--ink-2)}
+.mresize:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.gcard.mfull{position:fixed;inset:0;z-index:100;margin:0;border-radius:0;background:var(--bg);overflow:auto;padding:10px}
+.gcard.mfull .chartbox{min-height:100%;box-sizing:border-box;border-radius:10px}
 .mt{display:inline-flex;align-items:center;gap:8px;font:500 14px "IBM Plex Sans",system-ui,sans-serif;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer}
 .mt.on{color:var(--ink);border-color:var(--ink-2);background:var(--bg)}
 .mt:not(.on){opacity:.55}
+.mt.mexp{opacity:1}
 .mchips{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 12px;align-items:center}
 .mchips .ml{font:500 13px "IBM Plex Sans",system-ui,sans-serif;color:var(--muted);margin-right:2px}
 .mi{font:500 12px "IBM Plex Sans",system-ui,sans-serif;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer}
@@ -80,7 +90,7 @@ h3.sub{font-size:16px;font-weight:600;margin:28px 0 8px}
 .mi:not(.on){opacity:.5}
 .mi .mis{margin-right:6px;vertical-align:middle}
 .mt:focus-visible,.mi:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-@media (max-width:860px){.cv.master{height:540px}}
+
 .fine{font-family:"IBM Plex Sans",sans-serif;font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.5}
 .callout{border-left:3px solid var(--amber);padding:4px 0 4px 16px;margin:20px 0;color:var(--ink-2)}
 .callout p{margin:0}
@@ -192,18 +202,19 @@ section.ind.flash{animation:flash 1.4s ease-out}
 <div class="gcol" id="gcol" aria-label="Graphs">
 <p class="swipe">Swipe left for explanations · tap a graph to read about it</p>
 <div class="gcard" data-target="g0" tabindex="0" role="button" aria-label="Show the explanation for the master graph"><div class="chartbox inner">
-    <p class="chart-title">Master graph: SPY &amp; QQQ vs all 7 warning signs<span class="chart-sub" id="t0">Prices with crash periods marked, plus each warning sign as a line, 1986–2026</span></p>
-    <div class="toggles" role="group" aria-label="Choose which funds to show"><button type="button" class="mt on" data-k="0" aria-pressed="true"><i class="sw line" style="border-color:var(--blue)"></i>SPY (S&amp;P 500)</button><button type="button" class="mt on" data-k="1" aria-pressed="true"><i class="sw line" style="border-color:var(--orange)"></i>QQQ (Nasdaq-100)</button></div>
+    <p class="chart-title">Master graph: SPY &amp; QQQ vs all 7 warning signs<span class="chart-sub" id="t0">Prices with crash periods marked, plus a panel for each indicator you turn on, 1986–2026</span></p>
+    <div class="toggles" role="group" aria-label="Choose which funds to show"><button type="button" class="mt on" data-k="0" aria-pressed="true"><i class="sw line" style="border-color:var(--blue)"></i>SPY (S&amp;P 500)</button><button type="button" class="mt on" data-k="1" aria-pressed="true"><i class="sw line" style="border-color:var(--orange)"></i>QQQ (Nasdaq-100)</button><button type="button" class="mt mexp" id="mexp" aria-pressed="false">⤢ Expand</button></div>
     <div class="rgw" role="group" aria-label="Time range"><button type="button" class="rg on" data-g="0" data-m="all" aria-pressed="true">Full history</button><button type="button" class="rg" data-g="0" data-m="y10" aria-pressed="false">Last 10 years</button><button type="button" class="rg" data-g="0" data-m="y5" aria-pressed="false">Last 5 years</button><button type="button" class="rg" data-g="0" data-m="m12" aria-pressed="false">Last 12 months</button><button type="button" class="rg adjb" data-g="0" data-m="adj" aria-pressed="false">Tech-adjusted</button></div>
-    <div class="mchips" role="group" aria-label="Choose which indicator lines to show"><span class="ml">Indicator lines:</span><button type="button" class="mi on" data-i="0" aria-pressed="true"><i class="sw line mis"></i>CAPE</button><button type="button" class="mi on" data-i="1" aria-pressed="true"><i class="sw line mis"></i>ECY</button><button type="button" class="mi" data-i="2" aria-pressed="false"><i class="sw line mis"></i>Buffett</button><button type="button" class="mi" data-i="3" aria-pressed="false"><i class="sw line mis"></i>Yield curve</button><button type="button" class="mi" data-i="4" aria-pressed="false"><i class="sw line mis"></i>Rate hikes</button><button type="button" class="mi" data-i="5" aria-pressed="false"><i class="sw line mis"></i>Breadth</button><button type="button" class="mi" data-i="6" aria-pressed="false"><i class="sw line mis"></i>Margin debt</button></div>
+    <div class="mchips" role="group" aria-label="Choose which indicator panels to show"><span class="ml">Indicator panels:</span><button type="button" class="mi on" data-i="0" aria-pressed="true"><i class="sw line mis"></i>CAPE</button><button type="button" class="mi on" data-i="1" aria-pressed="true"><i class="sw line mis"></i>ECY</button><button type="button" class="mi" data-i="2" aria-pressed="false"><i class="sw line mis"></i>Buffett</button><button type="button" class="mi" data-i="3" aria-pressed="false"><i class="sw line mis"></i>Yield curve</button><button type="button" class="mi" data-i="4" aria-pressed="false"><i class="sw line mis"></i>Rate hikes</button><button type="button" class="mi" data-i="5" aria-pressed="false"><i class="sw line mis"></i>Breadth</button><button type="button" class="mi" data-i="6" aria-pressed="false"><i class="sw line mis"></i>Margin debt</button></div>
     <div class="legend">
       <span><i class="sw" style="background:var(--tint-red);border:1px solid var(--red)"></i>Crash, peak to bottom</span>
       <span><i class="sw round" style="background:var(--red)"></i>Famous crash</span>
       <span><i class="sw round" style="background:var(--amber)"></i>Other drop</span>
-      <span><i class="sw dash" style="border-color:var(--muted)"></i>Warning level 50 = elevated, 100 = flashing</span>
+      <span><i class="sw dash" style="border-color:var(--muted)"></i>Reference levels in each panel</span>
     </div>
-    <div class="cv master"><canvas id="c0" role="img" aria-label="SPY and QQQ prices from 1986 to 2026 with crash periods marked, and a line for each warning sign on a shared warning-level scale">Before the 2000 dot-com crash, six of the seven signs were flashing. In 2026, four are flashing and two are elevated.</canvas></div>
-    <p class="fine">Approximate prices. Before SPY launched (1993) and QQQ launched (1999), the lines show the S&amp;P 500 ÷ 10 and the Nasdaq-100 ÷ 41. 2025–26 levels are approximate. Indicator lines use the right-hand scale: each is rescaled so 50 is its "elevated" level and 100 its "flashing" level; tooltips show the real readings. Rate hikes, breadth and margin debt are dashed step lines because they are judgment calls.</p>
+    <div class="mwrap" id="mwrap"><div class="mprice"><canvas id="c0" role="img" aria-label="SPY and QQQ prices from 1986 to 2026 with crash periods marked; each indicator you turn on appears in its own panel below with its own scale">Before the 2000 dot-com crash, six of the seven signs were flashing. In 2026, four are flashing and two are elevated.</canvas></div><div id="mpanels"></div></div>
+    <div class="mresize" id="mresize" role="separator" aria-orientation="horizontal" aria-label="Drag to make the master graph taller or shorter" tabindex="0"><span></span></div>
+    <p class="fine">Approximate prices. Before SPY launched (1993) and QQQ launched (1999), the lines show the S&amp;P 500 ÷ 10 and the Nasdaq-100 ÷ 41. 2025–26 levels are approximate. Each indicator you turn on gets its own panel and scale below the prices, all sharing the same timeline. Drag the bar under the graph to resize it, or press Expand for full screen. Rate hikes, breadth and margin debt panels show a status (normal / elevated / flashing) because they are judgment calls.</p>
   </div></div>
 <div class="gcard" data-target="g1" tabindex="0" role="button" aria-label="Show the explanation for Graph 1"><div class="chartbox inner">
     <p class="chart-title">Graph 1: Shiller CAPE vs regular P/E<span class="chart-sub" id="t1">What investors pay for each $1 of company profit, 1900–2026</span></p>
@@ -336,7 +347,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
 
   <h3 class="sub">How to read it</h3>
   <p><strong>Top:</strong> SPY (the S&amp;P 500) and QQQ (the Nasdaq-100, mostly big tech) on a log scale, so a 50% drop looks the same size in 1987 as in 2022. Red bands run from each crash's peak to its bottom, with a dot at the peak.</p>
-  <p><strong>Indicator lines:</strong> each warning sign is drawn as a line on the right-hand scale, rescaled so they can share one axis: 50 means elevated and 100 means flashing. A line above the 100 dashed line is a red light. Turn lines on and off with the chips, and hover or tap any point for the real readings.</p>
+  <p><strong>Indicator panels:</strong> each warning sign you turn on gets its own panel under the prices, in its own units (CAPE as a ratio, ECY in %, the Buffett indicator in % of GDP, and so on), all on the same timeline. Dashed lines in each panel mark its normal and danger levels. Hovering one panel highlights the same date in all of them. Drag the bar under the graph to resize it, or press Expand to fill the screen.</p>
 
   <p class="see sans">See the master graph on the left.</p>
 
@@ -345,7 +356,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
   <p><strong>2008 came from a different place.</strong> Only two signs were flashing in 2007. Stocks weren't wildly expensive; the danger was in housing debt and the banks, which these seven gauges only partly capture.</p>
   <p><strong>Some crashes come from outside.</strong> Black Monday (1987) and COVID (2020) hit with few signs red. No valuation gauge predicts a pandemic or a one-day panic.</p>
   <p><strong>Today:</strong> four signs are flashing in 2026 (CAPE, ECY, Buffett indicator, margin debt) and two are elevated (rate hikes, breadth). Only the yield curve reads normal. 2025 had five signs flashing, the most since 2000's six.</p>
-  <div class="callout"><p><strong>Where 50 and 100 sit:</strong> CAPE is at 100 when it's 35% above its era's normal (≈15 before 1990, ≈27 after 2002) and at 50 when it's 15% above. ECY hits 100 at 2% and 50 at 3%. The Buffett indicator hits 100 at 140% of GDP and 50 at 110%. The yield curve hits 100 at zero (inverted) and 50 when the spread is 0.25. Rate hikes reach 100 during hiking cycles of 1.5+ points. The "Tech-adjusted" button re-scores CAPE against 27 for every year, the Buffett indicator against a fair value that drifts up from 80% to 150% of GDP, and ECY using forward earnings (about 0.6 points higher). Breadth and margin debt are judgment calls based on how the typical stock did vs the index, and how fast margin debt grew vs the market.</p></div>
+  <div class="callout"><p><strong>Danger levels used:</strong> CAPE flashes 35% above its era's normal (≈15 before 1990, ≈27 after 2002) and is elevated at 15% above. ECY flashes below 2% and is elevated below 3%. The Buffett indicator flashes at 140% of GDP and is elevated at 110%. The yield curve flashes when inverted (below zero). Rate hikes flash during hiking cycles of 1.5+ points. The "Tech-adjusted" button measures CAPE against 27 for every year, the Buffett indicator against a fair value that drifts up from 80% to 150% of GDP, and shows ECY using forward earnings (about 0.6 points higher). Breadth and margin debt are judgment calls based on how the typical stock did vs the index, and how fast margin debt grew vs the market.</p></div>
 </section>
 
 <!-- 1 -->
@@ -865,7 +876,7 @@ else if(k===3){const q=YCY[y];v=q<0?2:(q<0.25?1:0);}
 else v=+[HIKE,BRD,MRG][k-4][j];o[y]=v;}return o;});
 const RAW=(k,y)=>k===0?'CAPE '+CAPEY[y]:k===1?'ECY '+ip(ECYA,y).toFixed(1)+'%':k===2?Math.round(ip(BUFA,y))+'% of GDP':k===3?'spread '+(YCY[y]>0?'+':'')+YCY[y]:'';
 const MR={all:[1986,2027],adj:[1986,2027],y10:[2016.75,2026.9],y5:[2021.75,2026.9],m12:[2025.7,2026.8]};
-const T0={all:'Prices with crash periods marked, plus each warning sign as a line, 1986–2026',y10:'Prices and warning-sign lines, last 10 years',y5:'Prices and warning-sign lines, last 5 years',m12:'Prices and warning-sign lines, last 12 months',adj:'Warning-sign lines re-scored against tech-era “normal” levels, 1986–2026'};
+const T0={all:'Prices with crash periods marked, plus a panel for each indicator you turn on, 1986–2026',y10:'Prices and indicator panels, last 10 years',y5:'Prices and indicator panels, last 5 years',m12:'Prices and indicator panels, last 12 months',adj:'Indicator panels measured against tech-era “normal” levels, 1986–2026'};
 const LV=(v,a)=>{const[v0,v5,v1]=a;const q=(v-v5)/(v1-v5);const r=q>=0?50+50*q:50*(v-v0)/(v5-v0);return Math.max(-55,Math.min(235,Math.round(r)));};
 const B3P=[[2018,135],[2020,170],[2021,200],[2022,150],[2024,190],[2025.75,220],[2026.35,232],[2026.7,237]];
 const bufN=x=>80+1.75*(x-1986);
@@ -879,38 +890,70 @@ return P.map(([x,raw,y])=>({x,y,raw}));}
 function icol(){const dk=parseInt(t.surface.slice(1,3),16)<128;return dk?['#A78BFA','#2DD4BF','#F472B6','#A3E635','#FACC15','#CBD5E1','#E0A87A']:['#7C3AED','#0F8A7E','#DB2777','#4D7C0F','#A16207','#475569','#9A4A12'];}
 const STW=['normal','elevated','flashing'];
 const RAWT=(k,y,r)=>k===0?'CAPE '+r:k===1?'ECY '+r+'%':k===2?r+'% of GDP':k===3?'spread '+(r>0?'+':'')+r:'';
+const MX={hx:null,s:1,full:false,raf:0};
+const PN=['CAPE (ratio)','ECY, Shiller method (%)','Buffett indicator (% of GDP)','Yield curve, 10-yr − 2-yr (pts)','Rate hikes (judgment call)','Breadth (judgment call)','Margin debt (judgment call)'];
+function mSeries(k,adj){const P=[];
+if(k===0){for(let y=MY0;y<=2016;y++)P.push({x:y,y:CAPEY[y]});D10.forEach(d=>P.push({x:d[0],y:d[1]}));}
+else if(k===1){const f=adj?.6:0;for(let y=MY0;y<=2016;y++)P.push({x:y,y:Math.round((ip(ECYA,y)+f)*100)/100});D10.forEach((d,i)=>{if(SH10[i]!=null)P.push({x:d[0],y:Math.round((SH10[i]+f)*100)/100});});}
+else if(k===2){for(let y=MY0;y<=2017;y++)P.push({x:y,y:Math.round(ip(BUFA,y))});B3P.forEach(([x,v])=>P.push({x,y:v}));}
+else if(k===3){for(let y=MY0;y<=MY1;y++)P.push({x:y+.5,y:YCY[y]});}
+else{for(let y=MY0;y<=MY1;y++)P.push({x:y,y:ST[k][y]});P.push({x:2026.76,y:ST[k][MY1]});}
+return P;}
+function mRefs(k,adj){const L=(pts,lab,col,dash)=>({label:lab,data:pts.map(([x,y])=>({x,y})),borderColor:col,borderDash:dash||[5,4],borderWidth:1.25,pointRadius:0,pointHoverRadius:0,fill:false,tension:0,ref:1});
+const flat=(v,lab,col,dash)=>L([[MY0,v],[MY1+1,v]],lab,col,dash);
+if(k===0)return adj?[flat(27,'Tech-era normal ≈ 27',t.muted),flat(27*1.35,'Flashing',hexA(t.red,.8),[2,3])]:[L([[MY0,15],[1990,15],[2002,27],[MY1+1,27]],'Normal',t.muted),L([[MY0,15*1.35],[1990,15*1.35],[2002,27*1.35],[MY1+1,27*1.35]],'Flashing',hexA(t.red,.8),[2,3])];
+if(k===1)return[flat(2,'Danger: below 2%',hexA(t.red,.8),[2,3]),flat(0,'0%',t.muted)];
+if(k===2)return adj?[L([[MY0,80],[MY1+1,bufN(MY1+1)]],'Drifting fair value',t.muted),L([[MY0,80*1.45],[MY1+1,bufN(MY1+1)*1.45]],'Flashing',hexA(t.red,.8),[2,3])]:[flat(100,'100% = fair',t.muted),flat(140,'Flashing: 140%',hexA(t.red,.8),[2,3])];
+if(k===3)return[flat(0,'Inverted below 0',hexA(t.red,.8),[2,3])];
+return[];}
+function niceRange(v,pad){let mn=Math.min(...v),mx=Math.max(...v);const pd=(mx-mn)*(pad||.12)||1;mn-=pd;mx+=pd;const raw=(mx-mn)/4,e=Math.pow(10,Math.floor(Math.log10(raw))),st=[1,2,5,10].map(q=>q*e).find(q=>q>=raw);return[Math.floor(mn/st)*st,Math.ceil(mx/st)*st];}
+function mBands(c){const{ctx,chartArea:a,scales:{x}}=c;ctx.save();ctx.fillStyle=t.tr;CR.forEach(r=>{let x0=x.getPixelForValue(r[0]),x1=Math.max(x.getPixelForValue(r[1]),x0+3);if(x1<a.left||x0>a.right)return;x0=Math.max(x0,a.left);x1=Math.min(x1,a.right);ctx.fillRect(x0,a.top,x1-x0,a.bottom-a.top);});ctx.restore();}
+const mSync={id:'msync',afterDraw(c){if(MX.hx==null)return;const{ctx,chartArea:a,scales:{x}}=c;const px=x.getPixelForValue(MX.hx);if(px<a.left||px>a.right)return;ctx.save();ctx.strokeStyle=hexA(t.ink2,.6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(px,a.top);ctx.lineTo(px,a.bottom);ctx.stroke();ctx.restore();}};
+function mHover(e,els,c){const v=e.type==='mouseout'?null:c.scales.x.getValueForPixel(e.x);if(v===MX.hx)return;MX.hx=v;cancelAnimationFrame(MX.raf);MX.raf=requestAnimationFrame(()=>Object.keys(charts).forEach(k=>{if((k==='c0'||k.startsWith('mp'))&&charts[k]!==c)charts[k].draw();}));}
+function mHeight(){const n=MS.sig.filter(Boolean).length,w=document.getElementById('mwrap');if(!w)return;let h;
+if(MX.full){const top=w.getBoundingClientRect().top;h=Math.max(300,window.innerHeight-top-56);h*=MX.s;}else h=(400+125*n)*MX.s;
+w.style.height=Math.max(220+70*n,Math.round(h))+'px';}
 function master(){const md=mode[0],R=MR[md],adj=md==='adj',lin=md==='y5'||md==='m12',IC=icol();
 document.querySelectorAll('.mi').forEach(b=>{const s=b.querySelector('.mis');if(s)s.style.borderColor=IC[+b.dataset.i];});
 const vis=SIGN.map((_,k)=>k).filter(k=>MS.sig[k]);
 const yr=x=>Math.max(MY0,Math.min(MY1,Math.floor(x+1e-6)));
 const inX=(c,px)=>px>=c.chartArea.left-1&&px<=c.chartArea.right+1;
-const bg={id:'mbg',beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{x}}=c;ctx.save();ctx.fillStyle=t.tr;
-CR.forEach(r=>{let x0=x.getPixelForValue(r[0]),x1=Math.max(x.getPixelForValue(r[1]),x0+3);if(x1<a.left||x0>a.right)return;x0=Math.max(x0,a.left);x1=Math.min(x1,a.right);ctx.fillRect(x0,a.top,x1-x0,a.bottom-a.top);});
-if(vis.length){const y2=c.scales.y2;ctx.strokeStyle=hexA(t.muted,.9);ctx.lineWidth=1;[50,100].forEach(v=>{const yy=y2.getPixelForValue(v);ctx.setLineDash(v===100?[6,4]:[2,4]);ctx.beginPath();ctx.moveTo(a.left,yy);ctx.lineTo(a.right,yy);ctx.stroke();});ctx.setLineDash([]);}
-ctx.restore();}};
-const fg={id:'mfg',afterDraw(c){const{ctx,chartArea:a,scales:{x}}=c;const L=lblr(c),F11='11px '+FONT,F12='600 12px '+FONT;
+Object.keys(charts).forEach(k=>{if(k==='c0'||k.startsWith('mp')){charts[k].destroy();delete charts[k];}});
+const box=document.getElementById('mpanels');box.innerHTML='';
+mHeight();
+const LW=84,RW=14;
+const xt=md==='m12'?{afterBuildTicks:s=>{const T=[];for(let i=0;i<=12;i+=2)T.push({value:2025.75+i/12});s.ticks=T;},ticks:{callback:v=>{const y=Math.floor(v+1e-6),m=Math.round((v-y)*12);return MO[m]+" '"+String(y).slice(2);}}}:{ticks:{stepSize:md==='all'||adj?5:1,autoSkip:true,maxRotation:0,callback:function(v){if(!Number.isInteger(v))return'';const nw=this.chart.width<500;if(md==='y5')return v;if(md==='y10')return nw&&v%2?'':v;return v%(nw?10:5)===0?v:'';}}};
+const xScale=last=>Object.assign({type:'linear',min:R[0],max:R[1],grid:{display:false}},JSON.parse(JSON.stringify({})),xt,last?{}:{ticks:{display:false},afterBuildTicks:xt.afterBuildTicks});
+const bg={id:'mbg',beforeDatasetsDraw:mBands};
+const fg={id:'mfg',afterDraw(c){const{chartArea:a,scales:{x}}=c;const L=lblr(c),F11='11px '+FONT,F12='600 12px '+FONT;const ctx=c.ctx;
 const dots=[];[[0,SPY,0],[1,QQQ,7]].forEach(([d,arr,qi])=>{if(!MS.on[d])return;const m=c.getDatasetMeta(d).data;CR.forEach(r=>{const px=qi?r[7]:r[0];const i=arr.findIndex(p=>Math.abs(p.x-px)<.005);if(i<0||!m[i]||!inX(c,m[i].x))return;dots.push([m[i],r,d]);});});
 ctx.save();dots.forEach(([p,r])=>{ctx.beginPath();ctx.arc(p.x,p.y,5,0,7);ctx.fillStyle=r[4]?t.red:t.amber;ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=t.surface;ctx.stroke();L.block(p.x-7,p.y-7,14,14);});ctx.restore();
-vis.forEach(k=>{const m=c.getDatasetMeta(2+k).data;let p=null;for(let i=m.length-1;i>=0;i--){if(m[i].x<=a.right+1){p=m[i];break;}}if(p)L.place([{t:SIGN[k],f:'600 11px '+FONT,c:IC[k]}],p,['aboveL','belowL','left']);});
-if(vis.length){const y2=c.scales.y2;L.place([{t:'flashing',f:F11,c:t.muted}],{x:a.left+6,y:y2.getPixelForValue(100)-14,al:'left'},['at']);L.place([{t:'elevated',f:F11,c:t.muted}],{x:a.left+6,y:y2.getPixelForValue(50)-14,al:'left'},['at']);}
 CR.forEach(r=>{const cx=(x.getPixelForValue(r[0])+x.getPixelForValue(r[1]))/2;if(!inX(c,cx))return;L.place([{t:r[2],f:F11,c:t.ink2}],{x:cx,y:a.top+2},['below','belowL','belowR']);});
 dots.forEach(([p,r,d])=>L.place([{t:d?r[6]:r[5],f:F12,c:d?t.orange:t.blue}],p,['above','aboveL','aboveR','left','right','below']));}};
 const inR=d=>d.x>=R[0]&&d.x<=R[1];const pv=[].concat(MS.on[0]?SPY.filter(inR):[],MS.on[1]?QQQ.filter(inR):[]).map(d=>d.y);
 const big=md==='all'||adj,ymin=big?2:Math.floor(Math.min(...pv)*(lin?.95:.85)/50)*50,ymax=big?1000:Math.ceil(Math.max(...pv)*(lin?1.04:1.15)/50)*50;
 const ticks=[2,5,10,20,50,100,200,500,1000];
-const xt=md==='m12'?{afterBuildTicks:s=>{const T=[];for(let i=0;i<=12;i+=2)T.push({value:2025.75+i/12});s.ticks=T;},ticks:{callback:v=>{const y=Math.floor(v+1e-6),m=Math.round((v-y)*12);return MO[m]+" '"+String(y).slice(2);}}}:{ticks:{stepSize:md==='all'||adj?5:1,callback:v=>Number.isInteger(v)&&(md==='y5'||md==='y10'||v%5===0)?v:''}};
-if(charts.c0){charts.c0.destroy();delete charts.c0;}
-const sets=[{label:'SPY',data:SPY,yAxisID:'y',borderColor:t.blue,borderWidth:2.5,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[0],order:0},
-{label:'QQQ',data:QQQ,yAxisID:'y',borderColor:t.orange,borderWidth:2.5,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[1],order:1}].concat(SIGN.map((n,k)=>({label:n,data:IND(k,adj),yAxisID:'y2',borderColor:IC[k],borderWidth:1.75,borderDash:k>=4?[5,3]:[],stepped:k>=4?'after':false,tension:k<4?.25:0,pointRadius:0,pointHoverRadius:3,hidden:!MS.sig[k],order:2+k})));
-charts.c0=new Chart(document.getElementById('c0'),{type:'line',plugins:[bg,fg],data:{datasets:sets},
-options:{responsive:true,maintainAspectRatio:false,animation:false,layout:{padding:{top:4,right:4}},interaction:{mode:'nearest',intersect:false,axis:'x'},
+charts.c0=new Chart(document.getElementById('c0'),{type:'line',plugins:[bg,fg,mSync],data:{datasets:[
+{label:'SPY',data:SPY,borderColor:t.blue,borderWidth:2.5,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[0]},
+{label:'QQQ',data:QQQ,borderColor:t.orange,borderWidth:2.5,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[1]}]},
+options:{responsive:true,maintainAspectRatio:false,animation:false,onHover:mHover,events:['mousemove','mouseout','click','touchstart','touchmove'],layout:{padding:{top:4,right:RW}},interaction:{mode:'nearest',intersect:false,axis:'x'},
 plugins:{legend:{display:false},tooltip:{filter:(i,ix)=>ix===0,callbacks:{title:i=>{const v=i[0].raw.x;return v%1?dlab(v):String(v);},
-label:c=>{const v=c.raw.x;const out=[];[[0,SPY],[1,QQQ]].forEach(([d,arr])=>{if(!MS.on[d]||v<arr[0].x||v>arr[arr.length-1].x)return;const pv=ip(arr.map(p=>[p.x,p.y]),v);out.push((d?'QQQ':'SPY')+': $'+pv.toFixed(pv<20?1:0));});
-const r=CR.find(r=>Math.abs(r[0]-v)<.3);if(r)out.push('Before the '+r[3]+': SPY '+r[5]+', QQQ '+r[6]);return out;},
-afterBody:i=>{const y=yr(i[0].raw.x);if(!vis.length)return[];return['',y+(adj?' (tech-adjusted lines):':':')].concat(vis.map(k=>{const raw=k<4?IND(k,false).reduce((b,p)=>Math.abs(p.x-i[0].raw.x)<Math.abs(b.x-i[0].raw.x)?p:b).raw:null;return SIGN[k]+': '+STW[ST[k][y]]+(raw!=null?' ('+RAWT(k,y,raw)+')':'')+(k>=4?' (judgment call)':'');}));}}}},
-scales:{x:Object.assign({type:'linear',min:R[0],max:R[1],grid:{display:false}},xt),
-y:{type:lin?'linear':'logarithmic',min:ymin,max:ymax,grid:{color:gridC},afterBuildTicks:md==='all'||adj?(s=>{s.ticks=ticks.map(v=>({value:v}));}):undefined,ticks:{callback:v=>(big||Math.abs(v/50-Math.round(v/50))<1e-6)?'$'+(+v).toLocaleString():''},title:{display:true,text:'Share price'+(lin?'':' (log scale)'),color:t.muted}},
-y2:{display:vis.length>0,position:'right',min:-60,max:240,grid:{display:false},afterBuildTicks:s=>{s.ticks=[0,50,100,150,200].map(v=>({value:v}));},ticks:{callback:v=>v},title:{display:true,text:'Warning level (100 = flashing)',color:t.muted}}}}});
+label:c=>{const v=c.raw.x;const out=[];[[0,SPY],[1,QQQ]].forEach(([d,arr])=>{if(!MS.on[d]||v<arr[0].x||v>arr[arr.length-1].x)return;const q=ip(arr.map(p=>[p.x,p.y]),v);out.push((d?'QQQ':'SPY')+': $'+q.toFixed(q<20?1:0));});const r=CR.find(r=>Math.abs(r[0]-v)<.3);if(r)out.push('Before the '+r[3]+': SPY '+r[5]+', QQQ '+r[6]);return out;},
+afterBody:i=>{const y=yr(i[0].raw.x);const f=SIGN.map((_,k)=>k).filter(k=>ST[k][y]===2);return['',y+': '+f.length+' of 7 signs flashing'+(f.length?' ('+f.map(k=>SIGN[k]).join(', ')+')':'')];}}}},
+scales:{x:xScale(!vis.length),y:{type:lin?'linear':'logarithmic',min:ymin,max:ymax,grid:{color:gridC},afterFit:s=>{s.width=LW;},afterBuildTicks:big?(s=>{s.ticks=ticks.map(v=>({value:v}));}):undefined,ticks:{callback:v=>(big||Math.abs(v/50-Math.round(v/50))<1e-6)?'$'+(+v).toLocaleString():''},title:{display:true,text:'Share price'+(lin?'':' (log)'),color:t.muted}}}}});
+vis.forEach((k,ix)=>{const last=ix===vis.length-1;const div=document.createElement('div');div.className='mpan';const cv=document.createElement('canvas');cv.setAttribute('role','img');cv.setAttribute('aria-label',PN[k]+' over time');div.appendChild(cv);box.appendChild(div);
+if(last)div.style.flexGrow='1.25';
+const S=mSeries(k,adj),RF=mRefs(k,adj),stat=k>=4;
+const vals=S.filter(inR).map(d=>d.y).concat(RF.flatMap(r=>{const ys=r.data.map(d=>d.y);return ys;}));
+const yr2=stat?[-.35,2.9]:niceRange(S.filter(inR).map(d=>d.y).concat(RF.map(r=>ip(r.data.map(d=>[d.x,d.y]),Math.min(R[1],MY1)))),.15);
+const lastIn=[...S].reverse().find(inR);
+const fmt=v=>k===0?v.toFixed(1):k===1?v.toFixed(2)+'%':k===2?Math.round(v)+'%':k===3?(v>0?'+':'')+v.toFixed(2):['normal','elevated','flashing'][v];
+const ttl={id:'mt'+k,afterDraw(c){const L=lblr(c);const a=c.chartArea;L.place([{t:PN[k]+(lastIn?'  ·  latest '+fmt(lastIn.y):''),f:'600 11px '+FONT,c:IC[k]}],{x:a.left+6,y:a.top+2,al:'left'},['at']);
+c.data.datasets.forEach((d,di)=>{if(!d.ref)return;const m=c.getDatasetMeta(di).data;const yv=ip(d.data.map(p=>[p.x,p.y]),Math.min(R[1],MY1));const py=c.scales.y.getPixelForValue(yv);if(py<a.top||py>a.bottom)return;L.place([{t:d.label,f:'10px '+FONT,c:t.muted}],{x:a.right-4,y:py-13,al:'right'},['at'])||L.place([{t:d.label,f:'10px '+FONT,c:t.muted}],{x:a.right-4,y:py+2,al:'right'},['at']);});}};
+charts['mp'+k]=new Chart(cv,{type:'line',plugins:[bg,ttl,mSync],data:{datasets:[{label:SIGN[k],data:S,borderColor:IC[k],borderWidth:2.25,borderDash:[2,3],borderCapStyle:'round',stepped:stat?'after':false,tension:stat?0:.2,pointRadius:0,pointHoverRadius:4,pointBackgroundColor:IC[k],fill:false}].concat(RF)},
+options:{responsive:true,maintainAspectRatio:false,animation:false,onHover:mHover,events:['mousemove','mouseout','click','touchstart','touchmove'],layout:{padding:{top:18,right:RW}},interaction:{mode:'nearest',intersect:false,axis:'x'},
+plugins:{legend:{display:false},tooltip:{filter:i=>i.datasetIndex===0,callbacks:{title:i=>{const v=i[0].raw.x;return v%1?dlab(v):String(v);},label:c=>SIGN[k]+': '+fmt(c.raw.y)+(stat?'':' ('+['normal','elevated','flashing'][ST[k][yr(c.raw.x)]]+' that year)')}}},
+scales:{x:xScale(last),y:{min:yr2[0],max:yr2[1],grid:{color:gridC},afterFit:s=>{s.width=LW;},afterBuildTicks:stat?(s=>{s.ticks=[0,1,2].map(v=>({value:v}));}):undefined,ticks:{maxTicksLimit:4,font:{size:10},callback:v=>stat?['Normal','Elevated','Flashing'][v]:(k===1||k===2?v+'%':v)}}}}});});
 const tEl=document.getElementById('t0');if(tEl)tEl.textContent=T0[md];
 document.querySelectorAll('.rg[data-g="0"]').forEach(b=>{const on=b.dataset.m===md;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});}
 for(let n=1;n<=7;n++){if(n!==6)B[n].y5=function(){Y5=true;try{B[n].y10();}finally{Y5=false;}};if(NOADJ[n])B[n].adj=B[n].all;}
@@ -929,7 +972,16 @@ function build(){base();master();for(let n=1;n<=7;n++)render(n);}
 
 document.querySelectorAll('.rg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const n=+b.dataset.g;if(mode[n]===b.dataset.m)return;mode[n]=b.dataset.m;render(n);}));
 document.getElementById('lev').addEventListener('input',()=>sim());
-document.querySelectorAll('.mt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=+b.dataset.k;if(MS.on[k]&&!MS.on[1-k])return;MS.on[k]=MS.on[k]?0:1;b.classList.toggle('on',!!MS.on[k]);b.setAttribute('aria-pressed',String(!!MS.on[k]));master();}));
+document.querySelectorAll('.mt[data-k]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=+b.dataset.k;if(MS.on[k]&&!MS.on[1-k])return;MS.on[k]=MS.on[k]?0:1;b.classList.toggle('on',!!MS.on[k]);b.setAttribute('aria-pressed',String(!!MS.on[k]));master();}));
+(function(){const card=document.querySelector('.gcard[data-target="g0"]'),btn=document.getElementById('mexp'),hd=document.getElementById('mresize');
+function setFull(on){MX.full=on;MX.s=1;card.classList.toggle('mfull',on);btn.textContent=on?'✕ Close full screen':'⤢ Expand';btn.setAttribute('aria-pressed',String(on));mHeight();}
+btn.addEventListener('click',e=>{e.stopPropagation();setFull(!MX.full);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&MX.full)setFull(false);});
+window.addEventListener('resize',()=>{if(MX.full)mHeight();});
+let y0=0,h0=0;hd.addEventListener('click',e=>e.stopPropagation());
+hd.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();hd.setPointerCapture(e.pointerId);y0=e.clientY;h0=document.getElementById('mwrap').offsetHeight;});
+hd.addEventListener('pointermove',e=>{if(!hd.hasPointerCapture(e.pointerId))return;const w=document.getElementById('mwrap'),cur=w.offsetHeight;MX.s=1;mHeight();const base=w.offsetHeight;MX.s=Math.max(.35,(h0+e.clientY-y0)/base);mHeight();});
+hd.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();e.stopPropagation();MX.s=Math.max(.35,MX.s+(e.key==='ArrowDown'?.08:-.08));mHeight();}});})();
 document.querySelectorAll('.mi').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=+b.dataset.i;MS.sig[k]=MS.sig[k]?0:1;b.classList.toggle('on',!!MS.sig[k]);b.setAttribute('aria-pressed',String(!!MS.sig[k]));master();}));
 document.querySelectorAll('.tg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=charts.c1;if(!c)return;const i=+b.dataset.ds;const on=!c.isDatasetVisible(i);const other=i?0:1;if(!on&&!c.isDatasetVisible(other))return;c.setDatasetVisibility(i,on);if(mode[1]==='all'&&c.data.datasets[i+2])c.setDatasetVisibility(i+2,on);c.update();b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));}));
 
@@ -947,7 +999,7 @@ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function go(card){hideTips();const sec=document.getElementById(card.dataset.target);if(!sec)return;document.querySelectorAll('.gcard.active').forEach(c=>c.classList.remove('active'));card.classList.add('active');
 if(isMobile()){cols.scrollTo({left:tcol.offsetLeft,behavior:reduce?'auto':'smooth'});}tcol.scrollTo({top:sec.offsetTop-8,behavior:reduce?'auto':'smooth'});
 sec.classList.remove('flash');void sec.offsetWidth;sec.classList.add('flash');}
-document.querySelectorAll('.gcard').forEach(card=>{card.addEventListener('click',e=>{if(e.target.closest('input,button,label,output,a'))return;go(card);});card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();go(card);}});});
+document.querySelectorAll('.gcard').forEach(card=>{card.addEventListener('click',e=>{if(e.target.closest('input,button,label,output,a,.mresize')||card.classList.contains('mfull'))return;go(card);});card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();go(card);}});});
 ['scroll','resize'].forEach(ev=>window.addEventListener(ev,hideTips,{passive:true}));
 document.getElementById('gcol').addEventListener('scroll',hideTips,{passive:true});
 document.querySelectorAll('canvas').forEach(cv=>cv.addEventListener('pointerleave',hideTips));
