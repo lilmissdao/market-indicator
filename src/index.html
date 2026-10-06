@@ -69,6 +69,17 @@ h3.sub{font-size:16px;font-weight:600;margin:28px 0 8px}
 .tg:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .cv{position:relative;width:100%;height:320px}
 .cv.tall{height:380px}
+.cv.master{height:560px}
+.mt{display:inline-flex;align-items:center;gap:8px;font:500 14px "IBM Plex Sans",system-ui,sans-serif;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer}
+.mt.on{color:var(--ink);border-color:var(--ink-2);background:var(--bg)}
+.mt:not(.on){opacity:.55}
+.mchips{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 12px;align-items:center}
+.mchips .ml{font:500 13px "IBM Plex Sans",system-ui,sans-serif;color:var(--muted);margin-right:2px}
+.mi{font:500 12px "IBM Plex Sans",system-ui,sans-serif;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer}
+.mi.on{color:var(--ink);border-color:var(--ink-2);background:var(--bg)}
+.mi:not(.on){opacity:.5}
+.mt:focus-visible,.mi:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:860px){.cv.master{height:540px}}
 .fine{font-family:"IBM Plex Sans",sans-serif;font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.5}
 .callout{border-left:3px solid var(--amber);padding:4px 0 4px 16px;margin:20px 0;color:var(--ink-2)}
 .callout p{margin:0}
@@ -170,12 +181,27 @@ section.ind.flash{animation:flash 1.4s ease-out}
 <div class="app">
 <header class="top"><h1>Seven warning signs before a market bubble pops</h1>
 <p class="lede">A bubble is when prices climb far above what the underlying thing is actually worth. These indicators have flashed before most of the big crashes in history.</p>
-<p class="hint sans">Graphs on the left, explanations on the right. Click a graph to jump to its explanation. "Last 10 years" and "Last 12 months" zoom in (data through Oct 2, 2026). "Tech-adjusted" (Graphs 1, 2, 3, 6) accounts for today's high-margin tech era.</p>
+<p class="hint sans">Start with the master graph at the top. Graphs on the left, explanations on the right. Click a graph to jump to its explanation. "Last 10 years" and "Last 12 months" zoom in (data through Oct 2, 2026). "Tech-adjusted" (Graphs 1, 2, 3, 6) accounts for today's high-margin tech era.</p>
 <div class="tabs" role="tablist" aria-label="Choose a column"><button type="button" id="tabG" class="on" role="tab" aria-selected="true">Graphs</button><button type="button" id="tabT" role="tab" aria-selected="false">Explanations</button></div>
 </header>
 <main class="cols" id="cols">
 <div class="gcol" id="gcol" aria-label="Graphs">
 <p class="swipe">Swipe left for explanations · tap a graph to read about it</p>
+<div class="gcard" data-target="g0" tabindex="0" role="button" aria-label="Show the explanation for the master graph"><div class="chartbox inner">
+    <p class="chart-title">Master graph: SPY &amp; QQQ vs all 7 warning signs<span class="chart-sub">Prices on a log scale with crash periods marked, and each sign's status year by year, 1986–2026</span></p>
+    <div class="toggles" role="group" aria-label="Choose which funds to show"><button type="button" class="mt on" data-k="0" aria-pressed="true"><i class="sw line" style="border-color:var(--blue)"></i>SPY (S&amp;P 500)</button><button type="button" class="mt on" data-k="1" aria-pressed="true"><i class="sw line" style="border-color:var(--orange)"></i>QQQ (Nasdaq-100)</button></div>
+    <div class="mchips" role="group" aria-label="Choose which warning signs to show"><span class="ml">Signs:</span><button type="button" class="mi on" data-i="0" aria-pressed="true">CAPE</button><button type="button" class="mi on" data-i="1" aria-pressed="true">ECY</button><button type="button" class="mi on" data-i="2" aria-pressed="true">Buffett</button><button type="button" class="mi on" data-i="3" aria-pressed="true">Yield curve</button><button type="button" class="mi on" data-i="4" aria-pressed="true">Rate hikes</button><button type="button" class="mi on" data-i="5" aria-pressed="true">Breadth</button><button type="button" class="mi on" data-i="6" aria-pressed="true">Margin debt</button></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--tint-red);border:1px solid var(--red)"></i>Crash, peak to bottom</span>
+      <span><i class="sw round" style="background:var(--red)"></i>Famous crash</span>
+      <span><i class="sw round" style="background:var(--amber)"></i>Other drop</span>
+      <span><i class="sw" style="background:var(--red)"></i>Flashing</span>
+      <span><i class="sw" style="background:var(--amber)"></i>Elevated</span>
+      <span><i class="sw" style="background:var(--line)"></i>Normal</span>
+    </div>
+    <div class="cv master"><canvas id="c0" role="img" aria-label="SPY and QQQ prices from 1986 to 2026 with crash periods marked, and a row per warning sign showing which were flashing each year">Before the 2000 dot-com crash, six of the seven signs were flashing. In 2026, four are flashing and two are elevated.</canvas></div>
+    <p class="fine">Approximate prices. Before SPY launched (1993) and QQQ launched (1999), the lines show the S&amp;P 500 ÷ 10 and the Nasdaq-100 ÷ 41. 2025–26 levels are approximate. Faint red bars behind the prices count the signs flashing that year.</p>
+  </div></div>
 <div class="gcard" data-target="g1" tabindex="0" role="button" aria-label="Show the explanation for Graph 1"><div class="chartbox inner">
     <p class="chart-title">Graph 1: Shiller CAPE vs regular P/E<span class="chart-sub" id="t1">What investors pay for each $1 of company profit, 1900–2026</span></p>
     <div class="cf"><div class="eqr"><span class="lhs">P/E</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">12-month earnings</span></span></div><div class="eqr"><span class="lhs">CAPE</span><span class="op">=</span><span class="fx"><span class="nu">Price</span><span class="de">10-year avg. real earnings</span></span></div></div>
@@ -298,6 +324,25 @@ section.ind.flash{animation:flash 1.4s ease-out}
     </div>
   </div>
 </div>
+
+<section class="ind" id="g0">
+  <p class="kicker">Start here · All seven at once</p>
+  <h2>Master graph: SPY &amp; QQQ vs the 7 warning signs</h2>
+  <p class="q">When the warning lights were on, what did the market do next?</p>
+
+  <h3 class="sub">How to read it</h3>
+  <p><strong>Top:</strong> SPY (the S&amp;P 500) and QQQ (the Nasdaq-100, mostly big tech) on a log scale, so a 50% drop looks the same size in 1987 as in 2022. Red bands run from each crash's peak to its bottom, with a dot at the peak.</p>
+  <p><strong>Bottom rows:</strong> one row per warning sign, one cell per year. Red is flashing, amber is elevated, gray is normal. Faint red bars behind the prices count how many signs were flashing. Use the chips to show or hide signs, and hover or tap any year for details.</p>
+
+  <p class="see sans">See the master graph on the left.</p>
+
+  <h3 class="sub">What it's telling you</h3>
+  <p><strong>The dot-com crash had almost everything flashing.</strong> By 2000, six of the seven signs were red: extreme valuations, rate hikes, an inverted yield curve, and record margin debt. QQQ then fell 83%.</p>
+  <p><strong>2008 came from a different place.</strong> Only two signs were flashing in 2007. Stocks weren't wildly expensive; the danger was in housing debt and the banks, which these seven gauges only partly capture.</p>
+  <p><strong>Some crashes come from outside.</strong> Black Monday (1987) and COVID (2020) hit with few signs red. No valuation gauge predicts a pandemic or a one-day panic.</p>
+  <p><strong>Today:</strong> four signs are flashing in 2026 (CAPE, ECY, Buffett indicator, margin debt) and two are elevated (rate hikes, breadth). Only the yield curve reads normal. 2025 had five signs flashing, the most since 2000's six.</p>
+  <div class="callout"><p><strong>How the colors are set:</strong> CAPE flashes at 35%+ above its era's normal (≈15 before 1990, ≈27 after 2002) and is elevated at 15%+. ECY flashes below 2% and is elevated below 3%. The Buffett indicator flashes at 140%+ of GDP and is elevated at 110%+. The yield curve flashes when inverted and is elevated when nearly flat. Rate hikes flash during hiking cycles of 1.5+ points. Breadth and margin debt are judgment calls based on how the typical stock did vs the index, and how fast margin debt grew vs the market.</p></div>
+</section>
 
 <!-- 1 -->
 <div class="factcheck" id="factcheck">
@@ -506,8 +551,17 @@ let t,gridC;
 function tok(){const s=getComputedStyle(document.documentElement);const g=n=>s.getPropertyValue(n).trim();
 return{ink:g('--ink'),ink2:g('--ink-2'),muted:g('--muted'),line:g('--line'),blue:g('--blue'),red:g('--red'),amber:g('--amber'),gray:g('--gray-bar'),orange:g('--orange'),surface:g('--surface'),tr:g('--tint-red'),ta:g('--tint-amber')};}
 function hexA(h,a){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
-function base(){t=tok();gridC=t.line;Chart.defaults.font.family=FONT;Chart.defaults.font.size=12;Chart.defaults.color=t.muted;}
+function base(){t=tok();gridC=t.line;Chart.defaults.font.family=FONT;Chart.defaults.font.size=12;Chart.defaults.color=t.muted;Chart.defaults.plugins.tooltip.animation=false;}
 function put(n,cfg){const id=cvs[n];if(charts[id]){charts[id].destroy();delete charts[id];}charts[id]=new Chart(document.getElementById(id),cfg);return charts[id];}
+/* Places text blocks without overlapping each other; skips a block when no candidate spot is free. */
+function lblr(c){const ctx=c.ctx,B=[];const W=c.width,H=c.height;
+function hit(r){return B.some(b=>r[0]<b[0]+b[2]&&b[0]<r[0]+r[2]&&r[1]<b[1]+b[3]&&b[1]<r[1]+r[3]);}
+return{block(x,y,w,h){B.push([x,y,w,h]);},
+place(lines,p,keys){ctx.save();const ws=lines.map(l=>{ctx.font=l.f;return ctx.measureText(l.t).width;});const w=Math.max(...ws),lh=13,h=lines.length*lh;
+const C={above:[p.x,p.y-9-h,'center'],aboveL:[p.x+4,p.y-9-h,'right'],aboveR:[p.x-4,p.y-9-h,'left'],below:[p.x,p.y+9,'center'],belowL:[p.x+4,p.y+9,'right'],belowR:[p.x-4,p.y+9,'left'],left:[p.x-9,p.y-h/2,'right'],right:[p.x+9,p.y-h/2,'left'],at:[p.x,p.y,p.al||'left']};
+for(const k of keys){const[ax,top,al]=C[k];const x0=al==='left'?ax:(al==='right'?ax-w:ax-w/2);const r=[x0-2,top-1,w+4,h+2];
+if(r[0]<0||r[0]+r[2]>W||r[1]<0||r[1]+r[3]>H||hit(r))continue;B.push(r);ctx.textAlign=al;lines.forEach((l,i)=>{ctx.font=l.f;ctx.fillStyle=l.c;ctx.fillText(l.t,ax,top+10+i*lh);});ctx.restore();return true;}
+ctx.restore();return false;}};}
 let hid=0;
 function hline(y,label,opts){opts=opts||{};return{id:'hline'+(hid++),beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{y:Y}}=c;const p=Y.getPixelForValue(y);if(p<a.top||p>a.bottom)return;ctx.save();ctx.strokeStyle=opts.color||t.muted;ctx.setLineDash(opts.dash||[4,4]);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(a.left,p);ctx.lineTo(a.right,p);ctx.stroke();ctx.setLineDash([]);ctx.font='11px '+FONT;ctx.fillStyle=opts.color||t.muted;ctx.textAlign=opts.right?'right':'left';ctx.fillText(label,opts.right?a.right-6:a.left+6,p+(opts.below?15:-6));ctx.restore();}};}
 const M12=["Oct '25","Nov","Dec","Jan '26","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct 2"];
@@ -540,15 +594,15 @@ const cape=[[1900,19],[1906,21],[1910,15],[1915,11],[1920,6],[1925,11],[1929,32.
 const pe=[[1900,13],[1906,15],[1910,13],[1915,11],[1920,9],[1925,11],[1929,20],[1932,14],[1937,17],[1942,8],[1950,7],[1955,13],[1960,17],[1966,18],[1970,16],[1974,8],[1980,7],[1982,8],[1987,18],[1990,15],[1995,17],[1999,30],[2002,46],[2003,31],[2007,18],[2009,71],[2013,17],[2018,25],[2020,25],[2021,36],[2022,23],[2024,28.6],[2025,28.5],[2026,26.3]];
 const peNote={1929:'Looked calm: profits were at a boom high',2002:'Spike after the crash: profits collapsed',2009:'False alarm: profits collapsed (peaked near 124 in May 2009)',2021:'Inflated by the COVID profit dip'};
 const pk={1906:['-45%','1907 bank panic',0],1929:['-86%','the Great Crash',1],1937:['-50%','the 1937\u201338 recession',0],1966:['-22%','then flat for 16 years',0],1999:['-49%','the dot-com bust',1],2007:['-57%','the 2008 financial crisis',1],2018:['-20%','late 2018, then -34% in the 2020 COVID crash',0],2021:['-25%','the 2022 bear market',0]};
-const lab={id:'lab1',afterDatasetsDraw(c){const x=c.ctx;x.save();x.textAlign='center';
-if(c.isDatasetVisible(0)){c.getDatasetMeta(0).data.forEach((p,i)=>{const yr=cape[i][0],k=pk[yr];
-const narrow=c.chartArea.right-c.chartArea.left<420;
-if(yr===2026){x.font='600 12px '+FONT;x.fillStyle=t.ink;x.textAlign='right';x.fillText(narrow?'41.4':'Now 41.4',p.x+6,narrow?p.y-12:p.y-30);x.textAlign='center';return;}if(narrow&&(yr===2018||yr===2021))return;
-if(yr===2018&&k){x.textAlign='right';x.font='600 12px '+FONT;x.fillStyle=t.amber;x.fillText(k[0],p.x+6,p.y-25);x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText('2018',p.x+6,p.y-12);x.textAlign='center';return;}
-if(!k)return;x.font='600 12px '+FONT;x.fillStyle=k[2]?t.red:t.amber;x.fillText(k[0],p.x,p.y-25);x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText(String(yr),p.x,p.y-12);});
-const p82=c.getDatasetMeta(0).data[17];x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText('Cheap: 1982',p82.x,p82.y+20);}
-if(c.isDatasetVisible(1)){const m=c.getDatasetMeta(1).data;const i09=pe.findIndex(d=>d[0]===2009),i02=pe.findIndex(d=>d[0]===2002);x.font='11px '+FONT;x.fillStyle=t.ink;x.textAlign='right';x.fillText('Regular P/E \u2248 71 (2009)',m[i09].x-8,m[i09].y+4);if(c.chartArea.right-c.chartArea.left>=420){x.textAlign='left';x.fillText('46',m[i02].x+8,m[i02].y+4);}}
-x.font='600 11px '+FONT;x.textAlign='left';[[2,27,'27',t.muted],[3,21,'21',t.ink2]].forEach(([d,v,s,col])=>{if(!c.isDatasetVisible(d))return;x.fillStyle=col;x.fillText(s,c.chartArea.right+4,c.scales.y.getPixelForValue(v)+4);});x.restore();}};
+const lab={id:'lab1',afterDatasetsDraw(c){const L=lblr(c),F12='600 12px '+FONT,F11='11px '+FONT,v0=c.isDatasetVisible(0),v1=c.isDatasetVisible(1),m0=c.getDatasetMeta(0).data,m1=c.getDatasetMeta(1).data;
+const i09=pe.findIndex(d=>d[0]===2009),i02=pe.findIndex(d=>d[0]===2002);
+if(v0)cape.forEach(([yr],i)=>{if(pk[yr]||yr===2026){const p=m0[i];L.block(p.x-7,p.y-7,14,14);}});
+if(v1)[i09,i02].forEach(i=>{const p=m1[i];L.block(p.x-5,p.y-5,10,10);});
+[[2,27,'27',t.muted],[3,21,'21',t.ink2]].forEach(([d,v,s,col])=>{if(c.isDatasetVisible(d))L.place([{t:s,f:'600 11px '+FONT,c:col}],{x:c.chartArea.right+4,y:c.scales.y.getPixelForValue(v)-7,al:'left'},['at']);});
+if(v0){const pn=m0[cape.length-1];L.place([{t:'Now 41.4',f:F12,c:t.ink}],pn,['above','aboveL','left','below','belowL'])||L.place([{t:'41.4',f:F12,c:t.ink}],pn,['above','aboveL','left','below','belowL']);
+[1999,1929,2007,2021,1966,1937,1906,2018].forEach(yr=>{const i=cape.findIndex(d=>d[0]===yr),k=pk[yr];L.place([{t:k[0],f:F12,c:k[2]?t.red:t.amber},{t:String(yr),f:F11,c:t.ink2}],m0[i],['above','aboveL','aboveR','left','right','below']);});
+L.place([{t:'Cheap: 1982',f:F11,c:t.ink2}],m0[17],['below','belowL','belowR']);}
+if(v1){L.place([{t:'Regular P/E ≈ 71 (2009)',f:F11,c:t.ink}],m1[i09],['left','right','below']);L.place([{t:'46',f:F11,c:t.ink}],m1[i02],['right','left','aboveR']);}}};
 put(1,{type:'line',plugins:[lab],data:{datasets:[
 {data:cape.map(([x,y])=>({x,y})),borderColor:t.blue,borderWidth:2.5,tension:.25,fill:'origin',backgroundColor:hexA(t.blue,.07),pointRadius:cape.map(([x])=>pk[x]?6:(x===2026?6:0)),pointHoverRadius:cape.map(([x])=>pk[x]||x===2026?8:4),pointBackgroundColor:cape.map(([x])=>pk[x]?(pk[x][2]?t.red:t.amber):t.ink),pointBorderColor:t.surface,pointBorderWidth:2,order:1},
 {data:pe.map(([x,y])=>({x,y})),borderColor:t.ink2,borderDash:[6,4],borderWidth:2,tension:.2,pointRadius:pe.map(([x])=>(x===2009||x===2002)?4:0),pointBackgroundColor:t.ink2,pointHoverRadius:4,fill:false,order:2},
@@ -575,11 +629,14 @@ const ecy=[[1900,2.3],[1906,2.8],[1910,4.7],[1915,6.8],[1920,15],[1925,7.2],[192
 const pk={1906:['-45%','1907 bank panic'],1929:['-86%','the Great Crash'],1937:['-50%','the 1937\u201338 recession'],1966:['-22%','then flat for 16 years'],1999:['-49%','the dot-com bust'],2007:['-57%','the 2008 financial crisis'],2018:['-20%','late 2018, then -34% in 2020'],2021:['-25%','the 2022 bear market']};
 const ek={1906:0,1929:1,1937:0,1966:0,1999:1,2007:1,2018:0,2021:0};
 const good={1932:'Cheap: 1932',1982:'Cheap: 1982',2009:'Cheap: 2009'};
-const lab={id:'lab2',beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{y}}=c;ctx.save();const z0=y.getPixelForValue(2);ctx.fillStyle=t.tr;ctx.fillRect(a.left,z0,a.right-a.left,a.bottom-z0);const z=y.getPixelForValue(0);ctx.strokeStyle=t.muted;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.left,z);ctx.lineTo(a.right,z);ctx.stroke();ctx.font='11px '+FONT;ctx.fillStyle=t.muted;ctx.textAlign='right';ctx.fillText('Below 0: safe bonds expected to beat stocks',a.right-6,z+15);ctx.restore();},
-afterDatasetsDraw(c){const x=c.ctx;x.save();x.textAlign='center';c.getDatasetMeta(0).data.forEach((p,i)=>{const yr=ecy[i][0],v=ecy[i][1];
-if(yr===2026){x.font='600 12px '+FONT;x.fillStyle=t.ink;x.fillText('Now \u22481.0%',p.x-14,p.y-12);return;}
-if(yr in ek){x.font='600 12px '+FONT;x.fillStyle=ek[yr]?t.red:t.amber;x.fillText(v+'%',p.x,p.y-25);x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText(String(yr),p.x,p.y-12);}
-if(good[yr]){x.font='11px '+FONT;x.fillStyle=t.ink2;x.fillText(good[yr],p.x,p.y-12);}});x.restore();}};
+const lab={id:'lab2',beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{y}}=c;ctx.save();const z0=y.getPixelForValue(2);ctx.fillStyle=t.tr;ctx.fillRect(a.left,z0,a.right-a.left,a.bottom-z0);const z=y.getPixelForValue(0);ctx.strokeStyle=t.muted;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.left,z);ctx.lineTo(a.right,z);ctx.stroke();ctx.restore();},
+afterDatasetsDraw(c){const L=lblr(c),m=c.getDatasetMeta(0).data,F12='600 12px '+FONT,F11='11px '+FONT,a=c.chartArea;
+ecy.forEach(([yr],i)=>{if((yr in ek)||yr===2026||good[yr]){const p=m[i];L.block(p.x-7,p.y-7,14,14);}});
+L.place([{t:'Now ≈1.0%',f:F12,c:t.ink}],m[ecy.length-1],['above','aboveL','left','below','belowL']);
+[1999,1929,2007,2021,2018,1966,1937,1906].forEach(yr=>{const i=ecy.findIndex(d=>d[0]===yr);L.place([{t:ecy[i][1]+'%',f:F12,c:ek[yr]?t.red:t.amber},{t:String(yr),f:F11,c:t.ink2}],m[i],['above','aboveL','aboveR','left','right','below']);});
+Object.keys(good).forEach(yr=>{const i=ecy.findIndex(d=>d[0]===+yr);L.place([{t:good[yr],f:F11,c:t.ink2}],m[i],['above','aboveL','aboveR','right','left']);});
+const z=c.scales.y.getPixelForValue(0),note=[{t:'Below 0: safe bonds expected to beat stocks',f:F11,c:t.muted}];
+[[a.right-6,z+4,'right'],[a.left+6,z+4,'left'],[a.right-6,a.bottom-15,'right'],[a.left+6,a.bottom-15,'left']].some(([x,y,al])=>L.place(note,{x,y,al},['at']))||L.place([{t:'Below 0: bonds win',f:F11,c:t.muted}],{x:a.right-6,y:a.bottom-15,al:'right'},['at']);}};
 put(2,{type:'line',plugins:[lab],data:{datasets:[{data:ecy.map(([x,y])=>({x,y})),borderColor:t.blue,borderWidth:2.5,tension:.25,pointRadius:ecy.map(([x])=>(x in ek)||x===2026?6:(good[x]?4:0)),pointHoverRadius:5,pointBackgroundColor:ecy.map(([x])=>x===2026?t.ink:((x in ek)?(ek[x]?t.red:t.amber):t.blue)),pointBorderColor:t.surface,pointBorderWidth:2,fill:false}]},
 options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:34,right:10}},interaction:{mode:'nearest',intersect:false,axis:'x'},plugins:{legend:{display:false},tooltip:{callbacks:{title:i=>String(i[0].raw.x),label:c=>{const l=['ECY: '+c.raw.y+'% extra per year over safe bonds'];const k=pk[c.raw.x];if(k)l.push('Then: '+k[0]+' ('+k[1]+')');if(c.raw.x===2026)l.push('Shiller\u2019s September 2026 reading');return l;}}}},
 scales:{x:{type:'linear',min:1900,max:2027,grid:{display:false},ticks:{stepSize:10,callback:v=>v%10===0?v:''}},y:{min:-3,max:17,grid:{color:gridC},ticks:{callback:v=>v+'%'},title:{display:true,text:'Extra yield from stocks vs safe bonds',color:t.muted}}}}});
@@ -631,11 +688,11 @@ scales:{x:{type:'linear',min:0,max:12.2,grid:{display:false},ticks:{stepSize:1,a
 
 /* ---------- Graph 5 (rate hikes) ---------- */
 B[5]={all(){
-const lab={id:'lab5',afterDatasetsDraw(c){const x=c.ctx;x.save();x.textAlign='center';x.font='500 12px '+FONT;x.fillStyle=t.ink;c.data.datasets.forEach((d,di)=>c.getDatasetMeta(di).data.forEach((b,i)=>x.fillText(d.data[i]+'%',b.x,b.y-7)));x.restore();}};
+const lab={id:'lab5',afterDatasetsDraw(c){const L=lblr(c),f=(c.chartArea.right-c.chartArea.left<450?'500 10px ':'500 12px ')+FONT;[1,0].forEach(di=>c.getDatasetMeta(di).data.forEach((b,i)=>{const ln=[{t:c.data.datasets[di].data[i]+'%',f,c:t.ink}];L.place(ln,{x:b.x,y:b.y+2},['above'])||L.place(ln,{x:b.x,y:b.y-12},['above']);}));}};
 put(5,{type:'bar',plugins:[lab],data:{labels:[['US 1928\u201329','\u2192 1929 crash'],['Japan 1989\u201390','\u2192 Japan bubble'],['US 1999\u20132000','\u2192 dot-com'],['US 2004\u201306','\u2192 housing crash'],['US 2022\u201323','\u2192 2022 drop'],['US 2026','\u2192 so far']],
 datasets:[{data:[3.5,2.5,4.75,1,0.25,3.75],backgroundColor:t.gray,borderRadius:4,maxBarThickness:26},{data:[6,6,6.5,5.25,5.5,4],backgroundColor:[t.orange,t.orange,t.orange,t.orange,t.orange,hexA(t.orange,.55)],borderRadius:4,maxBarThickness:26}]},
 options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>(c.datasetIndex?(c.dataIndex===5?'Now: ':'Rate at peak: '):'Rate before hiking: ')+c.raw+'%'}}},
-scales:{x:{grid:{display:false},ticks:{autoSkip:false,maxRotation:0,font:{size:10}}},y:{min:0,max:7.5,grid:{color:gridC},ticks:{callback:v=>v+'%'},title:{display:true,text:'Interest rate',color:t.muted}}}}});
+scales:{x:{grid:{display:false},ticks:{autoSkip:false,maxRotation:0,font:{size:10},callback:function(v,i){const SH=[['1929','crash'],['Japan','1990'],['2000','dot-com'],['2006','housing'],['2023','2022 drop'],['2026','now']];return this.chart.width<520?SH[i]:this.getLabelForValue(v);}}},y:{min:0,max:7.5,grid:{color:gridC},ticks:{callback:v=>v+'%'},title:{display:true,text:'Interest rate',color:t.muted}}}}});
 },
 m12(){
 const L=["Sep '25","Oct","Nov","Dec","Jan '26","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"];
@@ -759,10 +816,59 @@ document.querySelectorAll('.rg[data-g="'+n+'"]').forEach(b=>{const on=b.dataset.
 B[n][m]();
 if(n===1&&m!=='adj')document.querySelectorAll('.tg').forEach(b=>{const k=+b.dataset.ds;const on=charts.c1.isDatasetVisible(k);b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});}
 function hideTips(){Object.values(charts).forEach(c=>{if(!c.tooltip||!c.tooltip.getActiveElements().length)return;c.tooltip.setActiveElements([],{x:0,y:0});c.setActiveElements([]);c.update('none');});}
-function build(){base();for(let n=1;n<=7;n++)render(n);}
+/* ---------- Master graph ---------- */
+const MS={on:[1,1],sig:[1,1,1,1,1,1,1]};
+const SPX=[[1986,211],[1987,242],[1987.65,337],[1987.8,225],[1988,247],[1989,278],[1990,353],[1990.54,369],[1990.78,295],[1991,330],[1992,417],[1993,436],[1994,466],[1995,459],[1996,616],[1997,741],[1998,970],[1999,1229],[2000,1469],[2000.22,1527],[2001,1320],[2002,1148],[2002.78,777],[2003,880],[2004,1112],[2005,1212],[2006,1248],[2007,1418],[2007.78,1565],[2008,1468],[2009,903],[2009.18,677],[2010,1115],[2011,1258],[2012,1258],[2013,1426],[2014,1848],[2015,2059],[2016,2044],[2017,2239],[2018,2674],[2018.72,2931],[2018.98,2351],[2019,2507],[2020,3231],[2020.13,3386],[2020.22,2237],[2021,3756],[2022,4797],[2022.78,3577],[2023,3840],[2024,4770],[2025,5882],[2025.13,6144],[2025.27,4983],[2025.75,6700],[2026,6850],[2026.2,6450],[2026.5,7150],[2026.76,7450]];
+const NDX=[[1986,132],[1987,141],[1987.65,185],[1987.8,135],[1988,156],[1989,177],[1990,223],[1990.54,245],[1990.78,170],[1991,200],[1992,330],[1993,361],[1994,398],[1995,404],[1996,576],[1997,822],[1998,990],[1999,1836],[2000,3708],[2000.22,4704],[2001,2341],[2002,1577],[2002.78,795],[2003,984],[2004,1468],[2005,1621],[2006,1645],[2007,1757],[2007.83,2239],[2008,2085],[2008.88,1036],[2009,1212],[2009.18,1043],[2010,1860],[2011,2218],[2012,2278],[2013,2661],[2014,3592],[2015,4236],[2016,4593],[2017,4864],[2018,6397],[2018.72,7660],[2018.98,5899],[2019,6330],[2020,8733],[2020.13,9718],[2020.22,6994],[2021,12888],[2021.88,16573],[2022,16320],[2022.97,10679],[2023,10940],[2024,16826],[2025,21012],[2025.13,22175],[2025.27,17090],[2025.75,24800],[2026,25300],[2026.2,23500],[2026.5,26200],[2026.76,27000]];
+const SPY=SPX.map(([x,v])=>({x,y:Math.round(v)/10})),QQQ=NDX.map(([x,v])=>({x,y:Math.round(v/41*10)/10}));
+/* [SPY peak, SPY bottom, short name, full name, famous?, SPY drop, QQQ drop, QQQ peak] */
+const CR=[[1987.65,1987.8,'Black Monday','Black Monday (1987)',1,'-34%','-27%',1987.65],[1990.54,1990.78,'1990','1990 recession',0,'-20%','-31%',1990.54],[2000.22,2002.78,'Dot-com bust','Dot-com bust',1,'-49%','-83%',2000.22],[2007.78,2009.18,'2008 crisis','2008 financial crisis',1,'-57%','-54%',2007.83],[2018.72,2018.98,'Late 2018','Late-2018 selloff',0,'-20%','-23%',2018.72],[2020.13,2020.22,'COVID','COVID crash',1,'-34%','-28%',2020.13],[2022,2022.78,'2022 bear','2022 bear market',0,'-25%','-35%',2021.88]];
+const MY0=1986,MY1=2026,SIGN=['CAPE','ECY','Buffett','Yield curve','Rate hikes','Breadth','Margin debt'];
+const ip=(A,y)=>{for(let i=1;i<A.length;i++)if(y<=A[i][0]){const[a,b]=[A[i-1],A[i]];return a[1]+(b[1]-a[1])*(y-a[0])/(b[0]-a[0]);}return A[A.length-1][1];};
+const CAPEY={1986:11.7,1987:14.9,1988:13.9,1989:15.1,1990:17.1,1991:15.6,1992:19.8,1993:20.3,1994:21.4,1995:20.2,1996:24.8,1997:28.3,1998:32.9,1999:40.6,2000:43.8,2001:36.9,2002:30.3,2003:22.9,2004:27.7,2005:26.6,2006:26.5,2007:27.2,2008:24.0,2009:15.2,2010:20.5,2011:22.9,2012:21.2,2013:21.9,2014:24.9,2015:26.5,2016:24.2,2017:28.1,2018:33.3,2019:28.4,2020:31.0,2021:34.5,2022:36.9,2023:28.3,2024:32.0,2025:37.1,2026:41.4};
+const ECYA=[[1982,10],[1987,2.7],[1990,2.4],[1995,0.8],[1999,-1.2],[2003,3.1],[2007,1.7],[2009,7.8],[2013,4.9],[2018,1.7],[2020,4.6],[2021,3.1],[2022,3.3],[2024,1.7],[2026,1.0]];
+const BUFA=[[1985,50],[1990,58],[1995,82],[1998,130],[2000,146],[2002,75],[2005,95],[2007,105],[2009,60],[2012,95],[2015,115],[2018,135],[2020,170],[2021,200],[2022,150],[2024,190],[2026,232]];
+const YCY={1986:1.0,1987:0.8,1988:0.4,1989:-0.1,1990:0.4,1991:1.6,1992:2.5,1993:2.2,1994:1.2,1995:0.5,1996:0.5,1997:0.4,1998:0.1,1999:0.3,2000:-0.4,2001:1.0,2002:2.2,2003:2.5,2004:2.0,2005:0.5,2006:-0.1,2007:0.1,2008:1.6,2009:2.6,2010:2.5,2011:2.4,2012:1.4,2013:2.0,2014:1.8,2015:1.4,2016:1.0,2017:0.8,2018:0.3,2019:0.0,2020:0.5,2021:1.2,2022:-0.4,2023:-0.8,2024:0.0,2025:0.5,2026:0.45};
+/* one digit per year 1986-2026: 0 normal, 1 elevated, 2 flashing */
+const HIKE='01210000210101200012200000000111200022001',BRD='00000000000122000000000000000101112102221',MRG='02000000000112200000120000011001100200122';
+const capeN=y=>y<=1990?15:(y>=2002?27:15+(y-1990));
+const ST=SIGN.map((_,k)=>{const o={};for(let y=MY0;y<=MY1;y++){const j=y-MY0;let v;
+if(k===0){const r=CAPEY[y]/capeN(y);v=r>=1.35?2:(r>=1.15?1:0);}
+else if(k===1){const e=ip(ECYA,y);v=e<2?2:(e<3?1:0);}
+else if(k===2){const b=ip(BUFA,y);v=b>=140?2:(b>=110?1:0);}
+else if(k===3){const q=YCY[y];v=q<0?2:(q<0.25?1:0);}
+else v=+[HIKE,BRD,MRG][k-4][j];o[y]=v;}return o;});
+const RAW=(k,y)=>k===0?'CAPE '+CAPEY[y]:k===1?'ECY '+ip(ECYA,y).toFixed(1)+'%':k===2?Math.round(ip(BUFA,y))+'% of GDP':k===3?'spread '+(YCY[y]>0?'+':'')+YCY[y]:'';
+function master(){const ROWH=15,vis=SIGN.map((_,k)=>k).filter(k=>MS.sig[k]);
+const yr=x=>Math.min(MY1,Math.floor(x+1e-6));
+const cnt=y=>vis.filter(k=>ST[k][y]===2).length;
+const bg={id:'mbg',beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{x}}=c;ctx.save();
+for(let y=MY0;y<=MY1;y++){const n=cnt(y);if(!n)continue;const x0=x.getPixelForValue(y)+1,x1=x.getPixelForValue(y+1)-1,h=(a.bottom-a.top)*.32*n/7;ctx.fillStyle=hexA(t.red,.08+.03*n);ctx.fillRect(x0,a.bottom-h,x1-x0,h);}
+ctx.fillStyle=t.tr;CR.forEach(r=>{const x0=x.getPixelForValue(r[0]),x1=Math.max(x.getPixelForValue(r[1]),x0+3);ctx.fillRect(x0,a.top,x1-x0,a.bottom-a.top);});ctx.restore();}};
+const fg={id:'mfg',afterDraw(c){const{ctx,chartArea:a,scales:{x}}=c;const L=lblr(c),F11='11px '+FONT,F12='600 12px '+FONT;
+const dots=[];[[0,SPY,0],[1,QQQ,7]].forEach(([d,arr,qi])=>{if(!MS.on[d])return;const m=c.getDatasetMeta(d).data;CR.forEach(r=>{const px=qi?r[7]:r[0];const i=arr.findIndex(p=>Math.abs(p.x-px)<.005);if(i<0)return;dots.push([m[i],r,d]);});});
+ctx.save();dots.forEach(([p,r])=>{ctx.beginPath();ctx.arc(p.x,p.y,5,0,7);ctx.fillStyle=r[4]?t.red:t.amber;ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=t.surface;ctx.stroke();L.block(p.x-7,p.y-7,14,14);});ctx.restore();
+CR.forEach(r=>{const cx=(x.getPixelForValue(r[0])+x.getPixelForValue(r[1]))/2;L.place([{t:r[2],f:F11,c:t.ink2}],{x:cx,y:a.top+2},['below','belowL','belowR']);});
+dots.forEach(([p,r,d])=>L.place([{t:d?r[6]:r[5],f:F12,c:d?t.orange:t.blue}],p,['above','aboveL','aboveR','left','right','below']));
+ctx.save();const top0=c.scales.x.bottom+8;vis.forEach((k,row)=>{const y0=top0+row*ROWH;ctx.font=F11;ctx.fillStyle=t.ink2;ctx.textAlign='left';ctx.fillText(SIGN[k],2,y0+10);
+for(let y=MY0;y<=MY1;y++){const v=ST[k][y],x0=x.getPixelForValue(y)+.5,x1=x.getPixelForValue(y+1)-.5;ctx.fillStyle=v===2?t.red:(v===1?t.amber:hexA(t.muted,.22));ctx.fillRect(x0,y0+1,x1-x0,ROWH-4);}});ctx.restore();}};
+const ticks=[2,5,10,20,50,100,200,500,1000];
+if(charts.c0){charts.c0.destroy();delete charts.c0;}
+charts.c0=new Chart(document.getElementById('c0'),{type:'line',plugins:[bg,fg],data:{datasets:[
+{label:'SPY',data:SPY,borderColor:t.blue,borderWidth:2.25,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[0]},
+{label:'QQQ',data:QQQ,borderColor:t.orange,borderWidth:2.25,tension:0,pointRadius:0,pointHoverRadius:4,hidden:!MS.on[1]}]},
+options:{responsive:true,maintainAspectRatio:false,animation:false,layout:{padding:{top:4,right:8,bottom:vis.length*ROWH+10}},interaction:{mode:'nearest',intersect:false,axis:'x'},
+plugins:{legend:{display:false},tooltip:{callbacks:{title:i=>{const v=i[0].raw.x;return v%1?dlab(v):'Start of '+v;},label:c=>{const r=CR.find(r=>Math.abs((c.datasetIndex?r[7]:r[0])-c.raw.x)<.005);return c.dataset.label+': $'+c.raw.y.toFixed(c.raw.y<20?1:0)+(r?' (peak before the '+r[3]+', then '+(c.datasetIndex?r[6]:r[5])+')':'');},
+afterBody:i=>{const y=yr(i[0].raw.x);if(!vis.length)return[];const f=vis.filter(k=>ST[k][y]===2),e=vis.filter(k=>ST[k][y]===1);const nm=k=>SIGN[k]+(RAW(k,y)?' ('+RAW(k,y)+')':'');
+return['',y+': '+f.length+' of '+vis.length+' signs flashing'].concat(f.length?['Flashing: '+f.map(nm).join(', ')]:[]).concat(e.length?['Elevated: '+e.map(nm).join(', ')]:[]);}}}},
+scales:{x:{type:'linear',min:MY0,max:MY1+1,grid:{display:false},ticks:{stepSize:5,callback:v=>v%5===0?v:''}},
+y:{type:'logarithmic',min:2,max:1000,grid:{color:gridC},afterFit:s=>{s.width=Math.max(s.width,84);},afterBuildTicks:s=>{s.ticks=ticks.map(v=>({value:v}));},ticks:{callback:v=>'$'+v},title:{display:true,text:'Share price (log scale)',color:t.muted}}}}});}
+function build(){base();master();for(let n=1;n<=7;n++)render(n);}
 
 document.querySelectorAll('.rg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const n=+b.dataset.g;if(mode[n]===b.dataset.m)return;mode[n]=b.dataset.m;render(n);}));
 document.getElementById('lev').addEventListener('input',()=>sim());
+document.querySelectorAll('.mt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=+b.dataset.k;if(MS.on[k]&&!MS.on[1-k])return;MS.on[k]=MS.on[k]?0:1;b.classList.toggle('on',!!MS.on[k]);b.setAttribute('aria-pressed',String(!!MS.on[k]));master();}));
+document.querySelectorAll('.mi').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=+b.dataset.i;MS.sig[k]=MS.sig[k]?0:1;b.classList.toggle('on',!!MS.sig[k]);b.setAttribute('aria-pressed',String(!!MS.sig[k]));master();}));
 document.querySelectorAll('.tg').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=charts.c1;if(!c)return;const i=+b.dataset.ds;const on=!c.isDatasetVisible(i);const other=i?0:1;if(!on&&!c.isDatasetVisible(other))return;c.setDatasetVisibility(i,on);if(mode[1]==='all'&&c.data.datasets[i+2])c.setDatasetVisibility(i+2,on);c.update();b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));}));
 
 if(window.Chart){build();window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',build);new MutationObserver(build).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});}
