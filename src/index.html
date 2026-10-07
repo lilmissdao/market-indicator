@@ -214,7 +214,7 @@ section.ind.flash{animation:flash 1.4s ease-out}
     </div>
     <div class="mwrap" id="mwrap"><div class="mprice"><canvas id="c0" role="img" aria-label="SPY and QQQ prices from 1986 to 2026 with crash periods marked; each indicator you turn on appears in its own panel below with its own scale">Before the 2000 dot-com crash, six of the seven signs were flashing. In 2026, four are flashing and two are elevated.</canvas></div><div id="mpanels"></div></div>
     <div class="mresize" id="mresize" role="separator" aria-orientation="horizontal" aria-label="Drag to make the master graph taller or shorter" tabindex="0"><span></span></div>
-    <p class="fine">Approximate prices. Before SPY launched (1993) and QQQ launched (1999), the lines show the S&amp;P 500 ÷ 10 and the Nasdaq-100 ÷ 41. 2025–26 levels are approximate. Each indicator you turn on gets its own panel and scale below the prices, all sharing the same timeline. Drag the bar under the graph to resize it, or press Expand for full screen. Rate hikes, breadth and margin debt panels show a status (normal / elevated / flashing) because they are judgment calls. The ECY panel uses the TIPS method (100 ÷ CAPE minus the 10-year TIPS yield), which this page has from Oct 2016; CAPE and regular P/E share a panel when both are on.</p>
+    <p class="fine">Approximate prices. Before SPY launched (1993) and QQQ launched (1999), the lines show the S&amp;P 500 ÷ 10 and the Nasdaq-100 ÷ 41. 2025–26 levels are approximate. Each indicator you turn on gets its own panel and scale below the prices, all sharing the same timeline. Drag the bar under the graph to resize it, or press Expand for full screen. Rate hikes, breadth and margin debt panels show a status (normal / elevated / flashing) because they are judgment calls. The ECY panel shows the TIPS method (100 ÷ CAPE minus the 10-year TIPS yield) from Oct 2016, the earliest TIPS data on this page (TIPS bonds only began in 1997), plus the Shiller method in gray going back to 1986; CAPE and regular P/E share a panel when both are on.</p>
   </div></div>
 <div class="gcard" data-target="g1" tabindex="0" role="button" aria-label="Show the explanation for Graph 1"><div class="chartbox inner">
     <p class="chart-title">Graph 1: Shiller CAPE vs regular P/E<span class="chart-sub" id="t1">What investors pay for each $1 of company profit, 1900–2026</span></p>
@@ -887,14 +887,15 @@ else if(k===2){const sc=(x,v)=>adj?LV(v/bufN(x),[1,1.2,1.45]):LV(v,[80,110,140])
 else if(k===3){for(let y=MY0;y<=MY1;y++)P.push([y+.5,YCY[y],LV(YCY[y],[1,.25,0])]);}
 else{const L=[10,55,110];for(let y=MY0;y<=MY1;y++)P.push([y,null,L[ST[k][y]]]);P.push([2026.76,null,L[ST[k][MY1]]]);}
 return P.map(([x,raw,y])=>({x,y,raw}));}
-function icol(){const dk=parseInt(t.surface.slice(1,3),16)<128;return dk?['#A78BFA','#2DD4BF','#F472B6','#A3E635','#FACC15','#CBD5E1','#E0A87A','#93C5FD']:['#7C3AED','#0F8A7E','#DB2777','#4D7C0F','#A16207','#475569','#9A4A12','#1D4ED8'];}
+function icol(){const dk=parseInt(t.surface.slice(1,3),16)<128;return dk?['#A78BFA','#2DD4BF','#F472B6','#A3E635','#FACC15','#CBD5E1','#E0A87A','#93C5FD','#94A3B8']:['#7C3AED','#0F8A7E','#DB2777','#4D7C0F','#A16207','#475569','#9A4A12','#1D4ED8','#64748B'];}
 const STW=['normal','elevated','flashing'];
 const RAWT=(k,y,r)=>k===0?'CAPE '+r:k===1?'ECY '+r+'%':k===2?r+'% of GDP':k===3?'spread '+(r>0?'+':'')+r:'';
 const MX={hx:null,s:1,full:false,raf:0};
-const PN=['CAPE (ratio)','ECY, TIPS method (%, data from Oct 2016)','Buffett indicator (% of GDP)','Yield curve, 10-yr − 2-yr (pts)','Rate hikes (judgment call)','Breadth (judgment call)','Margin debt (judgment call)','Regular P/E (ratio)'];
+const PN=['CAPE (ratio)','ECY, TIPS method (%)','Buffett indicator (% of GDP)','Yield curve, 10-yr − 2-yr (pts)','Rate hikes (judgment call)','Breadth (judgment call)','Margin debt (judgment call)','Regular P/E (ratio)'];
 const PEH=[[1982,8],[1987,18],[1990,15],[1995,17],[1999,30],[2002,46],[2003,31],[2007,18],[2009,71],[2013,17]];
 function mSeries(k,adj){const P=[];
 if(k===7){PEH.forEach(([x,y])=>P.push({x,y}));D10.forEach(d=>P.push({x:d[0],y:d[2]}));return P;}
+if(k===8){const f=adj?.6:0;for(let y=MY0;y<=2016;y++)P.push({x:y,y:Math.round((ip(ECYA,y)+f)*100)/100});D10.forEach((d,i)=>{if(d[0]>2016.5&&SH10[i]!=null)P.push({x:d[0],y:Math.round((SH10[i]+f)*100)/100});});SH12.forEach((v,i)=>{const x=Math.round((2025.75+i/12)*1000)/1000;if(v!=null&&x>2026.5)P.push({x,y:Math.round((v+f)*100)/100});});return P;}
 if(k===0){for(let y=MY0;y<=2016;y++)P.push({x:y,y:CAPEY[y]});D10.forEach(d=>P.push({x:d[0],y:d[1]}));}
 else if(k===1){const f=adj?.6:0;D10.forEach(d=>{if(d[0]<2025.7)P.push({x:d[0],y:Math.round((100/d[1]-d[3]+f)*100)/100});});ECY12.forEach((v,i)=>P.push({x:Math.round((2025.75+i/12)*1000)/1000,y:Math.round((v+f)*100)/100}));}
 else if(k===2){for(let y=MY0;y<=2017;y++)P.push({x:y,y:Math.round(ip(BUFA,y))});B3P.forEach(([x,v])=>P.push({x,y:v}));}
@@ -946,24 +947,24 @@ label:c=>{const v=c.raw.x;const out=[];[[0,SPY],[1,QQQ]].forEach(([d,arr])=>{if(
 afterBody:i=>{const y=yr(i[0].raw.x);const f=SIGN.map((_,k)=>k).filter(k=>ST[k][y]===2);return['',y+': '+f.length+' of 7 signs flashing'+(f.length?' ('+f.map(k=>SIGN[k]).join(', ')+')':'')];}}}},
 scales:{x:xScale(!mPanels().length),y:{type:lin?'linear':'logarithmic',min:ymin,max:ymax,grid:{color:gridC},afterFit:s=>{s.width=LW;},afterBuildTicks:big?(s=>{s.ticks=ticks.map(v=>({value:v}));}):undefined,ticks:{callback:v=>(big||Math.abs(v/50-Math.round(v/50))<1e-6)?'$'+(+v).toLocaleString():''},title:{display:true,text:'Share price'+(lin?'':' (log)'),color:t.muted}}}}});
 const PL=mPanels();
-PL.forEach((k,ix)=>{const last=ix===PL.length-1,both=k===0&&MS.sig[7];const div=document.createElement('div');div.className='mpan';const cv=document.createElement('canvas');cv.setAttribute('role','img');cv.setAttribute('aria-label',(both?'CAPE and regular P/E':PN[k])+' over time');div.appendChild(cv);box.appendChild(div);
+PL.forEach((k,ix)=>{const last=ix===PL.length-1,pk=k===0&&MS.sig[7]?7:(k===1?8:null),both=pk!=null;const div=document.createElement('div');div.className='mpan';const cv=document.createElement('canvas');cv.setAttribute('role','img');cv.setAttribute('aria-label',(pk===7?'CAPE and regular P/E':pk===8?'ECY by the TIPS and Shiller methods':PN[k])+' over time');div.appendChild(cv);box.appendChild(div);
 if(last)div.style.flexGrow='1.25';
-const stat=k>=4&&k<7,S=mSeries(k,adj),RF=mRefs(k,adj).concat(both?mRefs(7,adj):[]),S2=both?mSeries(7,adj):null;
+const stat=k>=4&&k<7,S=mSeries(k,adj),RF=mRefs(k,adj).concat(pk===7?mRefs(7,adj):[]),S2=both?mSeries(pk,adj):null;
 const yr2=stat?[-.35,2.9]:niceRange(S.filter(inR).map(d=>d.y).concat(S2?S2.filter(inR).map(d=>d.y):[]).concat(RF.map(r=>ip(r.data.map(d=>[d.x,d.y]),Math.min(R[1],MY1)))),.15);
 const lastOf=A=>[...A].reverse().find(inR),lastIn=lastOf(S),lastIn2=S2?lastOf(S2):null;
-const fmt=(v,kk)=>{kk=kk==null?k:kk;return kk===0||kk===7?v.toFixed(1):kk===1?v.toFixed(2)+'%':kk===2?Math.round(v)+'%':kk===3?(v>0?'+':'')+v.toFixed(2):['normal','elevated','flashing'][v];};
-const nm=kk=>kk===7?'P/E':SIGN[kk];
+const fmt=(v,kk)=>{kk=kk==null?k:kk;return kk===0||kk===7?v.toFixed(1):kk===1||kk===8?v.toFixed(2)+'%':kk===2?Math.round(v)+'%':kk===3?(v>0?'+':'')+v.toFixed(2):['normal','elevated','flashing'][v];};
+const nm=kk=>kk===7?'P/E':kk===8?'ECY, Shiller method':kk===1?'ECY, TIPS method':SIGN[kk];
 const ttl={id:'mt'+k,afterDraw(c){const L=lblr(c),a=c.chartArea,ctx=c.ctx,F='600 11px '+FONT;
-const SN=['CAPE','ECY (TIPS)','Buffett','Yield curve','Rate hikes','Breadth','Margin debt','P/E'];let t1=(both?'CAPE':PN[k])+(lastIn?'  ·  latest '+fmt(lastIn.y):'');if(!L.place([{t:t1,f:F,c:IC[k]}],{x:a.left+6,y:a.top+2,al:'left'},['at'])){t1=SN[k]+(lastIn?' · '+fmt(lastIn.y):'');L.place([{t:t1,f:F,c:IC[k]}],{x:a.left+6,y:a.top+2,al:'left'},['at']);}
-if(both){ctx.save();ctx.font=F;const w=ctx.measureText(t1).width;ctx.restore();L.place([{t:'Regular P/E'+(lastIn2?'  ·  latest '+fmt(lastIn2.y,7):''),f:F,c:IC[7]}],{x:a.left+6+w+16,y:a.top+2,al:'left'},['at'])||L.place([{t:'P/E '+(lastIn2?fmt(lastIn2.y,7):''),f:F,c:IC[7]}],{x:a.left+6,y:a.top+16,al:'left'},['at']);}
+const SN=['CAPE','ECY (TIPS)','Buffett','Yield curve','Rate hikes','Breadth','Margin debt','P/E','Shiller'];let t1=(pk===7?'CAPE':PN[k])+(lastIn?'  ·  latest '+fmt(lastIn.y):'');if(!L.place([{t:t1,f:F,c:IC[k]}],{x:a.left+6,y:a.top+2,al:'left'},['at'])){t1=SN[k]+(lastIn?' · '+fmt(lastIn.y):'');L.place([{t:t1,f:F,c:IC[k]}],{x:a.left+6,y:a.top+2,al:'left'},['at']);}
+if(both){ctx.save();ctx.font=F;const w=ctx.measureText(t1).width;ctx.restore();const n2=pk===7?'Regular P/E':'Shiller method',s2=pk===7?'P/E':'Shiller';L.place([{t:n2+(lastIn2?'  ·  latest '+fmt(lastIn2.y,pk):''),f:F,c:IC[pk]}],{x:a.left+6+w+16,y:a.top+2,al:'left'},['at'])||L.place([{t:s2+' '+(lastIn2?fmt(lastIn2.y,pk):''),f:F,c:IC[pk]}],{x:a.left+6,y:a.top+16,al:'left'},['at']);}
 c.data.datasets.forEach((d,di)=>{if(!d.ref)return;const yv=ip(d.data.map(p=>[p.x,p.y]),Math.min(R[1],MY1));const py=c.scales.y.getPixelForValue(yv);if(py<a.top||py>a.bottom)return;L.place([{t:d.label,f:'10px '+FONT,c:t.muted}],{x:a.right-4,y:py-13,al:'right'},['at'])||L.place([{t:d.label,f:'10px '+FONT,c:t.muted}],{x:a.right-4,y:py+2,al:'right'},['at']);});}};
 const main=(kk,data)=>({label:nm(kk),data,borderColor:IC[kk],borderWidth:2.25,borderDash:[2,3],borderCapStyle:'round',stepped:stat?'after':false,tension:stat?0:.2,pointRadius:0,pointHoverRadius:4,pointBackgroundColor:IC[kk],fill:false});
-const sets=[main(k,S)].concat(S2?[main(7,S2)]:[]).concat(RF);
+const sets=[main(k,S)].concat(S2?[main(pk,S2)]:[]).concat(RF);
 const st=(kk,x)=>kk<7&&kk!==1?' ('+STW[ST[kk][yr(x)]]+' that year)':'';
 charts['mp'+k]=new Chart(cv,{type:'line',plugins:[bg,ttl,mSync],data:{datasets:sets},
 options:{responsive:true,maintainAspectRatio:false,animation:false,onHover:mHover,events:['mousemove','mouseout','click','touchstart','touchmove'],layout:{padding:{top:both?32:18,right:RW}},interaction:{mode:'nearest',intersect:false,axis:'x'},
 plugins:{legend:{display:false},tooltip:{filter:(i,ix)=>ix===0&&!i.dataset.ref,callbacks:{title:i=>{const v=i[0].raw.x;return v%1?dlab(v):String(v);},
-label:c=>{const x=c.raw.x;if(stat)return SIGN[k]+': '+fmt(c.raw.y);const L=[];[[k,S]].concat(S2?[[7,S2]]:[]).forEach(([kk,A])=>{if(x<A[0].x||x>A[A.length-1].x)return;const v=ip(A.map(p=>[p.x,p.y]),x);L.push(nm(kk)+': '+fmt(v,kk)+st(kk,x));});return L;}}}},
+label:c=>{const x=c.raw.x;if(stat)return SIGN[k]+': '+fmt(c.raw.y);const L=[];[[k,S]].concat(S2?[[pk,S2]]:[]).forEach(([kk,A])=>{if(x<A[0].x||x>A[A.length-1].x)return;const v=ip(A.map(p=>[p.x,p.y]),x);L.push(nm(kk)+': '+fmt(v,kk)+st(kk,x));});return L;}}}},
 scales:{x:xScale(last),y:{min:yr2[0],max:yr2[1],grid:{color:gridC},afterFit:s=>{s.width=LW;},afterBuildTicks:stat?(s=>{s.ticks=[0,1,2].map(v=>({value:v}));}):undefined,ticks:{maxTicksLimit:4,font:{size:10},callback:v=>stat?['Normal','Elevated','Flashing'][v]:(k===1||k===2?v+'%':v)}}}}});});
 const tEl=document.getElementById('t0');if(tEl)tEl.textContent=T0[md];
 document.querySelectorAll('.rg[data-g="0"]').forEach(b=>{const on=b.dataset.m===md;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));});}
